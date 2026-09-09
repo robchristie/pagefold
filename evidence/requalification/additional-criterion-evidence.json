@@ -1,0 +1,54 @@
+[
+  {
+    "artefact": {
+      "bytes": 8777,
+      "kind": "file",
+      "path": "tests/test_workspace.py",
+      "sha256": "b2d9739b64da480b2addcb627de755bbcb59f65a77c189da8eb5a1a1d9c6d4a4",
+      "store": "/nvme/development/pagefold"
+    },
+    "command_digest": "ece4fb90204c1d58aa1d51c3985c5777b00fb9e95d3fda0e73de071be552887c",
+    "criterion_id": "search_refresh",
+    "exit_code": 0,
+    "output_digest": "ad21b4fd32675650dbe76002cc8571e64efe9676282ac1862db7225d91d63ff2"
+  },
+  {
+    "artefact": {
+      "bytes": 8777,
+      "kind": "file",
+      "path": "tests/test_workspace.py",
+      "sha256": "b2d9739b64da480b2addcb627de755bbcb59f65a77c189da8eb5a1a1d9c6d4a4",
+      "store": "/nvme/development/pagefold"
+    },
+    "command_digest": "ece4fb90204c1d58aa1d51c3985c5777b00fb9e95d3fda0e73de071be552887c",
+    "criterion_id": "source_preservation",
+    "exit_code": 0,
+    "output_digest": "ad21b4fd32675650dbe76002cc8571e64efe9676282ac1862db7225d91d63ff2"
+  },
+  {
+    "artefact": {
+      "bytes": 8777,
+      "kind": "file",
+      "path": "tests/test_workspace.py",
+      "sha256": "b2d9739b64da480b2addcb627de755bbcb59f65a77c189da8eb5a1a1d9c6d4a4",
+      "store": "/nvme/development/pagefold"
+    },
+    "command_digest": "ece4fb90204c1d58aa1d51c3985c5777b00fb9e95d3fda0e73de071be552887c",
+    "criterion_id": "content_safety",
+    "exit_code": 0,
+    "output_digest": "ad21b4fd32675650dbe76002cc8571e64efe9676282ac1862db7225d91d63ff2"
+  },
+  {
+    "artefact": {
+      "bytes": 1262,
+      "kind": "file",
+      "path": "evidence/requalification/runtime-identities.json",
+      "sha256": "a2c46d68baf3517813c2c3d253bd66bcc7d02ab0928e50a58e8cf40f2e262ee0",
+      "store": "/nvme/development/pagefold"
+    },
+    "command_digest": "62433b7fc925d7d5f7ff969dc044f4481ae47d14f9800247c88f17fb0bfe753d",
+    "criterion_id": "local_delivery",
+    "exit_code": 0,
+    "output_digest": "b7a6b43b08bbf29d836fc1bb8d0692cc6fbba8e2ff2a275fc98585199a3bdbd0"
+  }
+]

@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to:
+
+'243dd2f847d9cc9e8baacf53c0657a4d22e676a8d9e74756cf3f0d62c5eef751'
+    at refresh (file:///nvme/development/pagefold/tools/qualification-refresh.mjs:30:118)
+    at async file:///nvme/development/pagefold/tools/qualification-refresh.mjs:62:72 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '243dd2f847d9cc9e8baacf53c0657a4d22e676a8d9e74756cf3f0d62c5eef751',
+  expected: '243dd2f847d9cc9e8baacf53c0657a4d22e676a8d9e74756cf3f0d62c5eef751',
+  operator: 'notStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v25.8.2

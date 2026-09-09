@@ -1,0 +1,4 @@
+{
+  "error": "invalid bounded independent review report",
+  "reason": "Runtime review reports are limited to 64 artefacts; the first report listed 153. This is failed registration metadata, not EngineeringReviewEvidence. The repaired candidate uses a bounded source-and-evidence-manifest review."
+}

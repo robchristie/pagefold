@@ -1,0 +1,50 @@
+{
+  "viewport": {
+    "width": 390,
+    "height": 760
+  },
+  "elements": [
+    {
+      "tag": "BODY",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 760,
+        "top": 0,
+        "right": 390,
+        "bottom": 760,
+        "left": 0
+      },
+      "overflow": "hidden"
+    },
+    {
+      "tag": "CANVAS",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 760,
+        "top": 0,
+        "right": 390,
+        "bottom": 760,
+        "left": 0
+      },
+      "overflow": "clip"
+    },
+    {
+      "tag": "INPUT",
+      "rect": {
+        "x": 503.9375,
+        "y": 62.5,
+        "width": 5,
+        "height": 3,
+        "top": 62.5,
+        "right": 508.9375,
+        "bottom": 65.5,
+        "left": 503.9375
+      },
+      "overflow": "clip"
+    }
+  ]
+}

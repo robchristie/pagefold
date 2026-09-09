@@ -1,0 +1,28 @@
+[package]
+name = "pagefold-probe"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+eframe = { version = "=0.36.1", default-features = false, features = ["default_fonts", "glow", "x11", "wayland"] }
+egui = "=0.36.1"
+egui_commonmark = { version = "=0.25.0", default-features = false, features = ["pulldown_cmark"] }
+egui_extras = { version = "=0.36.1", default-features = false, features = ["image"] }
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "gif", "webp"] }
+polyorama-core = { path = "../polyorama/crates/polyorama-core" }
+polyorama-ui-egui = { path = "../polyorama/crates/polyorama-ui-egui" }
+serde_json = "1"
+serde = { version = "1", features = ["derive"] }
+ehttp = { version = "0.5", default-features = false }
+pulldown-cmark = "=0.13.4"
+percent-encoding = "2"
+flate2 = "=1.1.10"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = "=0.2.127"
+wasm-bindgen-futures = "0.4"
+web-sys = { version = "0.3", features = ["HtmlCanvasElement"] }
+console_error_panic_hook = "0.1"

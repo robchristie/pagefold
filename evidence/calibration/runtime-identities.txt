@@ -1,0 +1,6 @@
+rustc 1.97.1 (8bab26f4f 2026-07-14)
+wasm-bindgen 0.2.127
+14fb8e70e5809e8d2f5da2ca09962cca1c39c1cdccb8579203b6bb087d0cb548  web/pkg/pagefold_probe_bg.wasm
+d1aab126ee204079a2d038776245374d2ddf0f505563fbb743366fdf1e74e5b4  target/debug/pagefold-probe
+0b20b130e7edd9dd51873be867761295fe0cfad490c2b9a64f95bd3cfc08fa71  /home/rob/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome
+2d2f2b3966cebd6ec75abbbdb4709a1093849207ada6624cdfe36f38d0f5c811  .runtime-scratch/alsa.tar.zst

@@ -1,0 +1,159 @@
+[
+  {
+    "action": "viewport",
+    "value": "1100",
+    "extra": "800"
+  },
+  {
+    "action": "capture",
+    "value": "empty"
+  },
+  {
+    "action": "fill",
+    "value": "directory",
+    "extra": "/nvme/development/pagefold-supervision-20260909-a/knowledge"
+  },
+  {
+    "action": "key",
+    "value": "Tab"
+  },
+  {
+    "action": "capture",
+    "value": "keyboard-focus"
+  },
+  {
+    "action": "key",
+    "value": "Enter"
+  },
+  {
+    "action": "capture",
+    "value": "home"
+  },
+  {
+    "action": "point",
+    "value": "411",
+    "extra": "466"
+  },
+  {
+    "action": "capture",
+    "value": "missing-page"
+  },
+  {
+    "action": "point",
+    "value": "510",
+    "extra": "466"
+  },
+  {
+    "action": "capture",
+    "value": "missing-image-link"
+  },
+  {
+    "action": "point",
+    "value": "663",
+    "extra": "466"
+  },
+  {
+    "action": "capture",
+    "value": "unsupported"
+  },
+  {
+    "action": "point",
+    "value": "62",
+    "extra": "702"
+  },
+  {
+    "action": "capture",
+    "value": "blocked"
+  },
+  {
+    "action": "point",
+    "value": "400",
+    "extra": "702"
+  },
+  {
+    "action": "capture",
+    "value": "external"
+  },
+  {
+    "action": "point",
+    "value": "257",
+    "extra": "466"
+  },
+  {
+    "action": "capture",
+    "value": "unicode"
+  },
+  {
+    "action": "point",
+    "value": "40",
+    "extra": "466"
+  },
+  {
+    "action": "capture",
+    "value": "back-home"
+  },
+  {
+    "action": "point",
+    "value": "110",
+    "extra": "466"
+  },
+  {
+    "action": "capture",
+    "value": "reading"
+  },
+  {
+    "action": "wheel",
+    "value": "2600"
+  },
+  {
+    "action": "capture",
+    "value": "reading-scrolled"
+  },
+  {
+    "action": "wheel",
+    "value": "-20000"
+  },
+  {
+    "action": "capture",
+    "value": "reading-return"
+  },
+  {
+    "action": "viewport",
+    "value": "390",
+    "extra": "760"
+  },
+  {
+    "action": "capture",
+    "value": "narrow-reading"
+  },
+  {
+    "action": "click",
+    "value": "page:Home.md"
+  },
+  {
+    "action": "capture",
+    "value": "narrow-home"
+  },
+  {
+    "action": "fill",
+    "value": "search",
+    "extra": "caf\u00e9"
+  },
+  {
+    "action": "click",
+    "value": "page:Unicode.md"
+  },
+  {
+    "action": "capture",
+    "value": "narrow-search"
+  },
+  {
+    "action": "fill",
+    "value": "search",
+    "extra": "no-such-text"
+  },
+  {
+    "action": "capture",
+    "value": "no-results"
+  }
+]

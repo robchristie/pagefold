@@ -1,0 +1,261 @@
+[
+  {
+    "bytes": 83,
+    "kind": "file",
+    "path": ".gitignore",
+    "sha256": "a8d2542af1cdab5e27a2bfbccf19cc5f39c3a96c6db24552d4e8bf702f9a867c",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 98964,
+    "kind": "file",
+    "path": "Cargo.lock",
+    "sha256": "ac08503a7dde2f7d1094db1ff704363e8a1b03b58e94ff212d94e4a2836b31f0",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1069,
+    "kind": "file",
+    "path": "Cargo.toml",
+    "sha256": "32857340fb3de6633f38f147eb106c184bf499300e835ff691c38a32932798d4",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 4171,
+    "kind": "file",
+    "path": "README.md",
+    "sha256": "838ed96e920d70579d6da2f53e6010e37f170a1118b33d9df9766608a92264c1",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib0",
+    "sha256": "24785749216a95342ea80c141eb6fb858323f820fb0ff7d558ffb5cc7b8d2266",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib1",
+    "sha256": "26b0d2696bc6bafc6fa2ec21d4dbe92d4b45f162bc01498a345dd9a7114ae74f",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib10",
+    "sha256": "6e0a4dea6629dc6bf4dcdded54f4a7da51be3abf98d0d7153f83a3a05001701f",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib11",
+    "sha256": "a5a288803c02c27814b38df014037c6feb51a0024e717fd0cdc9e1ec560bec9a",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1046595,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib12",
+    "sha256": "272a2415b02f240dcc915bb3abc295d6786e0c296b598d2270f49940b4d3338a",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib2",
+    "sha256": "5c7cd2405cb1da45c5b58b5e6550780a7a24eaebfde54dd131628d251029f079",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib3",
+    "sha256": "48132c1edc271e22376d657619a9392aa6ffae9eb5cd0a1a98e523a5357f30e3",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib4",
+    "sha256": "87d397155dd322808e197a07d1b24860d82063fda39717c759837d0821241494",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib5",
+    "sha256": "f6dca3176ea67181590cd1e5979d01feb77b3d06578bead217e3035c1471112b",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib6",
+    "sha256": "2b93b3074926fbbef314e610f15429a1e665c41ffbbefaf8010ccd8a08d6488f",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib7",
+    "sha256": "0c4515b1bd4a1cf4871ef79c622b67ad4624a281f755ef1e60cd422c8c6766e3",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib8",
+    "sha256": "7714699ff5bf4cb1d076e0306cc4a673e96813d247cd5819546bf724f06a981b",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib9",
+    "sha256": "f5a5400deafacae2379664b3498a3c7cfeecc4de4d5fd8d2e285231c3dcb0aee",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 4301,
+    "kind": "file",
+    "path": "assets/fonts/OFL.txt",
+    "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1450,
+    "kind": "file",
+    "path": "assets/fonts/README.md",
+    "sha256": "95b129f2475c6ad2e3d7806c0073c7e442dc6eb0e86244002a52b482faf2cce7",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 77,
+    "kind": "file",
+    "path": "build.rs",
+    "sha256": "1a1a91b2e079fd7b160dc0ade88c22974dd9abe3f5dbed075b21454b05caa1d2",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1933,
+    "kind": "file",
+    "path": "docs/active-plan.md",
+    "sha256": "2e8388f331dc6e074a42c59a82972eef84b9641fef0a65d6953a3f2f9476730e",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3952,
+    "kind": "file",
+    "path": "docs/content-contract.md",
+    "sha256": "a9f4357f1a1057b2abf2146af88cf5693f9d51fa47394e7c9f1693759a3bc3f4",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 25020,
+    "kind": "file",
+    "path": "src/lib.rs",
+    "sha256": "b63e1f559faeed09843d1d2b196a1b83611d1556f7a4e207c94442615ceec632",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 196,
+    "kind": "file",
+    "path": "src/main.rs",
+    "sha256": "e8cfc2783d89aaf668c32045871749f58a85cad18f2bdc7abe1dc475c9daaf9d",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 8777,
+    "kind": "file",
+    "path": "tests/test_workspace.py",
+    "sha256": "b2d9739b64da480b2addcb627de755bbcb59f65a77c189da8eb5a1a1d9c6d4a4",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 874,
+    "kind": "file",
+    "path": "tools/browser-action.mjs",
+    "sha256": "e98dec3391513ab775a9557582df7e0f167ebd7893427e5ff938953bf444b61a",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 2535,
+    "kind": "file",
+    "path": "tools/capture.mjs",
+    "sha256": "3269850144ab06104845af6405503dd57d9dc153743b0531322b896b7b5c43d5",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3296,
+    "kind": "file",
+    "path": "tools/check-qualification.py",
+    "sha256": "990e6d26c781acd31fbbfea12757126a819f68a110ad8c39f48c9b2200b7b221",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3423,
+    "kind": "file",
+    "path": "tools/implementation-smoke.mjs",
+    "sha256": "c3b4fb8fad559b377cb197ec182133b08c0d47b936f91153eb34286ced2bb0ae",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 744,
+    "kind": "file",
+    "path": "tools/inventory.py",
+    "sha256": "1d59101e8fcec02ea9dcd837320301c8e3002d281c91495988b956aa7470b68b",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 2348,
+    "kind": "file",
+    "path": "tools/qualification-action.mjs",
+    "sha256": "46f6febd1ab9838b8f060732e1a2c89c589ac2f05bac6fac78a690d09e20ff59",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 5965,
+    "kind": "file",
+    "path": "tools/qualification-refresh.mjs",
+    "sha256": "63490fe653535a1e46d371c0ade755cac31661d16de6a8ef3176f5faa41079d5",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 9280,
+    "kind": "file",
+    "path": "tools/server.py",
+    "sha256": "db7d4d53776bec85222bbe958dd06b9d10f90f0c676ec4b693baaaef72172688",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 964,
+    "kind": "file",
+    "path": "tools/start-inspection-browser.sh",
+    "sha256": "d3f2dc4976b29f350f237bfc8b2df1b9923b197c968ee26d5e58172aa5d50c28",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 489,
+    "kind": "file",
+    "path": "tools/verify.sh",
+    "sha256": "134f612d3f98e0242253f9893e54ee573bb000fa501fd56d02383f469dbeb32e",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 228,
+    "kind": "file",
+    "path": "web/app.js",
+    "sha256": "2bc80190fb4fa63d8c5edd59c2ec6876503a857191e24ab72743dc9ab60e4070",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 303,
+    "kind": "file",
+    "path": "web/index.html",
+    "sha256": "8f833585aa4143015d390811f8f353d36627764f9588126052974df58298cf44",
+    "store": "/nvme/development/pagefold"
+  }
+]

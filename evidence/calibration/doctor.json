@@ -1,0 +1,1 @@
+{"schema_version":1,"command":"doctor","ok":true,"endpoint":{"source":"flag","display":"http://127.0.0.1:9317"},"browser":{"product":"Chrome/151.0.7922.34","protocol_version":"1.3"},"websocket":{"available":true}}

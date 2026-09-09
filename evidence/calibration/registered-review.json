@@ -1,0 +1,244 @@
+{
+  "artefacts": [
+    {
+      "bytes": 87747,
+      "kind": "file",
+      "path": "Cargo.lock",
+      "sha256": "666b361cd0a070ba05c696e38621c77380c978e08ed2adbe817909f3dc5d01bb",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 70,
+      "kind": "file",
+      "path": ".gitignore",
+      "sha256": "89921a91e4b5885ed425097c64fef2a58d520b26377722827e511aa4b8b6f334",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 913,
+      "kind": "file",
+      "path": "Cargo.toml",
+      "sha256": "432f3a9c2d6dffd3e46f73ab5cdc6aba125b7fd0c10670ed781b9add68bd5769",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 2185,
+      "kind": "file",
+      "path": "README.md",
+      "sha256": "a0ec98930d1885457469caf4284a425e85c62915c98deb65a99b5280ad503474",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 739,
+      "kind": "file",
+      "path": "build.rs",
+      "sha256": "f343b5dbc7498ca64401c2018c879564a8c78e03d3922649e4af8ed712330ebf",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 5134,
+      "kind": "file",
+      "path": "src/lib.rs",
+      "sha256": "525af5afd69cfb59dae7b5ea6777e2b5e5dae897cee5a2bd8e0cecede3249211",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 205,
+      "kind": "file",
+      "path": "src/main.rs",
+      "sha256": "b7e7bc8e6a20118d7efd1403be88ae74213b67d8e891b597a45370fb184197a6",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 1809,
+      "kind": "file",
+      "path": "docs/active-plan.md",
+      "sha256": "ebaa00f52a8af0ac8e049a27af1cd79743127d85cd416f9fddb9ae82451ec35a",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 424,
+      "kind": "file",
+      "path": "web/index.html",
+      "sha256": "b8a0de88501083769e8ff1e6f3660337f85b9e334b04ccb027a6b74dae457f0b",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 2535,
+      "kind": "file",
+      "path": "tools/capture.mjs",
+      "sha256": "3269850144ab06104845af6405503dd57d9dc153743b0531322b896b7b5c43d5",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 874,
+      "kind": "file",
+      "path": "tools/browser-action.mjs",
+      "sha256": "e98dec3391513ab775a9557582df7e0f167ebd7893427e5ff938953bf444b61a",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 744,
+      "kind": "file",
+      "path": "tools/inventory.py",
+      "sha256": "1d59101e8fcec02ea9dcd837320301c8e3002d281c91495988b956aa7470b68b",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 445,
+      "kind": "file",
+      "path": "tools/verify.sh",
+      "sha256": "c7a8c985e47ee662d66629749198ae9835149ee13037c0d69aebe144adeaa67d",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 7019,
+      "kind": "file",
+      "path": "evidence/calibration/report.md",
+      "sha256": "9dd386be1f90f35c7e05c51d19469daef69ac0139f43543699522c60a9f79546",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 477,
+      "kind": "file",
+      "path": "evidence/calibration/runtime-identities.txt",
+      "sha256": "e0b154af5df3beff14fe4ce935d1c7d1d2c45b364b566233cac3bdfe28dc4cd9",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 706,
+      "kind": "file",
+      "path": "evidence/calibration/fixtures-before.json",
+      "sha256": "cfd508854a6399f2ec4aaef3d8a896fe974a913a34bcb6aa88fedde7d3a5a9db",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 706,
+      "kind": "file",
+      "path": "evidence/calibration/fixtures-after.json",
+      "sha256": "cfd508854a6399f2ec4aaef3d8a896fe974a913a34bcb6aa88fedde7d3a5a9db",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 937,
+      "kind": "file",
+      "path": "evidence/calibration/verification.log",
+      "sha256": "d692989e7acd6ec305d2e01a0bb6fcc427425d42ce640891ca0514454f1edb91",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 1235,
+      "kind": "file",
+      "path": "evidence/calibration/flow.json",
+      "sha256": "84f31b3b819d28aabc72090859d79ced0336531c81533fc7d4b74ff97799f9bf",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 660,
+      "kind": "file",
+      "path": "evidence/calibration/scroll.json",
+      "sha256": "62e47c145d23a70160b4beba07514711d426ff1bae7641aa67eb3269321104e5",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 662,
+      "kind": "file",
+      "path": "evidence/calibration/scroll-top.json",
+      "sha256": "44da3520a4d2b48d8a82a935299729877d204a851e254e2ee33330d9d4ef38a1",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 134,
+      "kind": "file",
+      "path": "evidence/calibration/browser-state.json",
+      "sha256": "167f736c336807f35754c4dd4d67cf040d4aa63e0e63dfdd5f1f300a776c7228",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 292,
+      "kind": "file",
+      "path": "evidence/calibration/accessibility.json",
+      "sha256": "e3a23182af039b17fe72ff885d54245ab7a4aa1e6e08218b195692dc95b16420",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 421,
+      "kind": "file",
+      "path": "evidence/calibration/narrow-layout.json",
+      "sha256": "159c718db97ca9811b4e251dd3f17f94937804a8d5b2a56b0b79cc7f1959cf4c",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 48660,
+      "kind": "file",
+      "path": "evidence/calibration/home.png",
+      "sha256": "0b5300211547fcc940cbaca3c21d0fed4245875f228db5fe7d09331bee64c9a6",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 61465,
+      "kind": "file",
+      "path": "evidence/calibration/reading.png",
+      "sha256": "854cd4b897a20f436ecc53565ed4a62ee285ca446cf8169f36135c2a9bab38db",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 67707,
+      "kind": "file",
+      "path": "evidence/calibration/scrolled.png",
+      "sha256": "bd1f0278140d810600fd6bf969d70afdae1eb11eb51ea89673384c3241c3ad49",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 22879,
+      "kind": "file",
+      "path": "evidence/calibration/unicode.png",
+      "sha256": "e422a1e298dc3bcb0d098ba6fde2134b752374098ee94d83aadbf83dfbbd0708",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 48660,
+      "kind": "file",
+      "path": "evidence/calibration/back-home.png",
+      "sha256": "0b5300211547fcc940cbaca3c21d0fed4245875f228db5fe7d09331bee64c9a6",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 46984,
+      "kind": "file",
+      "path": "evidence/calibration/missing.png",
+      "sha256": "04f6a58c3c23c053b779e6837e6885c889f581b79d189b8ecef1cb01bc781fe9",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 56755,
+      "kind": "file",
+      "path": "evidence/calibration/narrow.png",
+      "sha256": "5b259b9e5a0d91971120de13dd467f0a5e8c33d396d9d7b1311bd3bce0369137",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 60414,
+      "kind": "file",
+      "path": "evidence/calibration/unsupported.png",
+      "sha256": "05513390f32841367a4c3a62757c21143b5fc902885ee36090bacbe28557f0dc",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 55850,
+      "kind": "file",
+      "path": "evidence/calibration/narrow-reading.png",
+      "sha256": "2b04a30d756ccc1631f68bf5eea32aac36f429884af8d1198af8d3cba44be61f",
+      "store": "/nvme/development/pagefold"
+    },
+    {
+      "bytes": 55169,
+      "kind": "file",
+      "path": "evidence/calibration/narrow-reading-top.png",
+      "sha256": "4c26a308d134594d5d2a7b533cb6e36ec1740492a7ce7d1c9f1cc3c2e312040d",
+      "store": "/nvme/development/pagefold"
+    }
+  ],
+  "evidence_digest": "2d011afcb3173ec0db7af82bf5658c121b8ebda96920af9a8b944a40579c6976",
+  "reviewer_identity": "codex-thread:01a08561-f3f7-74f2-a4fc-2c646c51c59a:turn:01a08561-f431-78b2-a3b3-2fe5b18090d3"
+}

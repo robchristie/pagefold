@@ -1,0 +1,34 @@
+{
+  "files": [
+    {
+      "path": "target/debug/pagefold-probe",
+      "bytes": 380777856,
+      "sha256": "2b6127393c57c1ef4c95eafb80b43f2427dae47745b389641c2f837404af0db1"
+    },
+    {
+      "path": "web/pkg/pagefold_probe_bg.wasm",
+      "bytes": 48618703,
+      "sha256": "3975da0a42b5a04778df5e0df8d140693f52a4e88e66c75aa8e2c307c23e2e52"
+    },
+    {
+      "path": "web/pkg/pagefold_probe.js",
+      "bytes": 82178,
+      "sha256": "621be8cabda02e9bb78a2ff58040d820baeb059094b61446314e003e3ffa8d0b"
+    },
+    {
+      "path": "/home/rob/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome",
+      "bytes": 290614600,
+      "sha256": "0b20b130e7edd9dd51873be867761295fe0cfad490c2b9a64f95bd3cfc08fa71"
+    }
+  ],
+  "browser": "Chrome/151.0.7922.34",
+  "renderer": "headless ANGLE SwiftShader/WebGL",
+  "service": "python3 tools/server.py --state .runtime-scratch/qualification-state",
+  "browser_launch": "sh tools/start-inspection-browser.sh",
+  "cdp": "http://127.0.0.1:9317",
+  "url": "http://127.0.0.1:3817/",
+  "polyorama_commit": "fba3db87aaeb4a7a9f1bbfd0ba59fa0aac713b21",
+  "polyorama_tree": "f9fb7201c5cb32dd41a476de2c9770a8d707b7b5",
+  "polyorama_status": "",
+  "verified_by": "sh tools/verify.sh; evidence/requalification-repair/resumed-verification.log; resumed runtime identity comparison"
+}

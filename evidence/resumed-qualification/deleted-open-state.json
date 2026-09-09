@@ -1,0 +1,155 @@
+{
+  "generation": "344cb3022702890d858c03bf0f5ae2fe4d8e60c6976218e1c5c9b973dd6f5463",
+  "limitations": [
+    "Reader and native label layout are unmeasured",
+    "Text inputs have no framework coverage category",
+    "Browser AccessKit adapter unavailable"
+  ],
+  "nodes": [
+    {
+      "enabled": true,
+      "focused": false,
+      "id": "directory",
+      "label": "Knowledge directory",
+      "rect": [
+        8,
+        51,
+        1084,
+        23
+      ]
+    },
+    {
+      "enabled": true,
+      "focused": false,
+      "id": "pagefold.open",
+      "label": "Open directory",
+      "rect": [
+        8,
+        79,
+        98.375,
+        32
+      ]
+    },
+    {
+      "enabled": true,
+      "focused": true,
+      "id": "pagefold.refresh",
+      "label": "Refresh / rebuild",
+      "rect": [
+        113.375,
+        79,
+        106.625,
+        32
+      ]
+    },
+    {
+      "enabled": true,
+      "focused": false,
+      "id": "search",
+      "label": "Search page text",
+      "rect": [
+        8,
+        140,
+        1084,
+        23
+      ]
+    },
+    {
+      "id": "reader",
+      "rect": [
+        8,
+        336,
+        1084,
+        456
+      ],
+      "scroll_y": 0
+    }
+  ],
+  "page": "Renamed.md",
+  "pending": false,
+  "query": "qual-added",
+  "root": "/nvme/development/pagefold/.runtime-scratch/qualification-journey-dE68n8/knowledge",
+  "snapshot_stale": false,
+  "status": "4 pages · refreshed from source · 0 warnings",
+  "text_coverage": {
+    "attempted_components": 2,
+    "excluded_categories": [
+      "ordinary_egui_labels"
+    ],
+    "failed_components": 0,
+    "measured_components": 2,
+    "native_text_controls": 0,
+    "observed_native_controls": 0,
+    "successful_components": 2
+  },
+  "text_layouts": [
+    {
+      "allocated_rect": {
+        "max_x": 97.375,
+        "max_y": 109,
+        "min_x": 17,
+        "min_y": 81
+      },
+      "baseline": null,
+      "clip_rect": {
+        "max_x": 97.375,
+        "max_y": 109,
+        "min_x": 17,
+        "min_y": 81
+      },
+      "component_id": {
+        "instance": 3770449246017495,
+        "kind": "action_button"
+      },
+      "declared_max_lines": 1,
+      "horizontal_alignment": "centre",
+      "interaction": "inert",
+      "line_count": 1,
+      "overflow": "ellipsis",
+      "painted_rect": {
+        "max_x": 97.1875,
+        "max_y": 103.5,
+        "min_x": 17.1875,
+        "min_y": 86.5
+      },
+      "parent_id": null,
+      "role": "button_label",
+      "truncated": false,
+      "vertical_alignment": "centre"
+    },
+    {
+      "allocated_rect": {
+        "max_x": 211,
+        "max_y": 109,
+        "min_x": 122.375,
+        "min_y": 81
+      },
+      "baseline": null,
+      "clip_rect": {
+        "max_x": 211,
+        "max_y": 109,
+        "min_x": 122.375,
+        "min_y": 81
+      },
+      "component_id": {
+        "instance": 681448778204368,
+        "kind": "action_button"
+      },
+      "declared_max_lines": 1,
+      "horizontal_alignment": "centre",
+      "interaction": "inert",
+      "line_count": 1,
+      "overflow": "ellipsis",
+      "painted_rect": {
+        "max_x": 211,
+        "max_y": 103.5,
+        "min_x": 122.375,
+        "min_y": 86.5
+      },
+      "parent_id": null,
+      "role": "button_label",
+      "truncated": false,
+      "vertical_alignment": "centre"
+    }
+  ]
+}

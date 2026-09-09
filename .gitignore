@@ -2,3 +2,5 @@
 /.runtime-scratch/
 /.qualification/
 /node_modules/
+/web/pkg/
+__pycache__/

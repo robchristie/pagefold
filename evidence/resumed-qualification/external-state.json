@@ -1,0 +1,192 @@
+{
+  "generation": "027eab692d84a24fe694891e3be30b620a3052af9340563e8c42c387fdd88e5b",
+  "limitations": [
+    "Reader and native label layout are unmeasured",
+    "Text inputs have no framework coverage category",
+    "Browser AccessKit adapter unavailable"
+  ],
+  "nodes": [
+    {
+      "enabled": true,
+      "focused": false,
+      "id": "directory",
+      "label": "Knowledge directory",
+      "rect": [
+        8,
+        51,
+        1084,
+        23
+      ]
+    },
+    {
+      "enabled": true,
+      "focused": false,
+      "id": "pagefold.open",
+      "label": "Open directory",
+      "rect": [
+        8,
+        79,
+        98.375,
+        32
+      ]
+    },
+    {
+      "enabled": true,
+      "focused": false,
+      "id": "pagefold.refresh",
+      "label": "Refresh / rebuild",
+      "rect": [
+        113.375,
+        79,
+        106.625,
+        32
+      ]
+    },
+    {
+      "enabled": true,
+      "focused": false,
+      "id": "search",
+      "label": "Search page text",
+      "rect": [
+        8,
+        140,
+        1084,
+        23
+      ]
+    },
+    {
+      "enabled": true,
+      "focused": false,
+      "id": "page:Home.md",
+      "label": "Home.md",
+      "rect": [
+        8,
+        192,
+        1084,
+        28
+      ]
+    },
+    {
+      "enabled": true,
+      "focused": false,
+      "id": "page:Unicode.md",
+      "label": "Unicode.md",
+      "rect": [
+        8,
+        225,
+        1084,
+        28
+      ]
+    },
+    {
+      "enabled": true,
+      "focused": false,
+      "id": "page:guides/Reading.md",
+      "label": "guides/Reading.md",
+      "rect": [
+        8,
+        258,
+        1084,
+        28
+      ]
+    },
+    {
+      "id": "reader",
+      "rect": [
+        8,
+        336,
+        1084,
+        456
+      ],
+      "scroll_y": 0
+    }
+  ],
+  "page": "Home.md",
+  "pending": false,
+  "query": "",
+  "root": "/nvme/development/pagefold-supervision-20260909-a/knowledge",
+  "snapshot_stale": false,
+  "status": "Blocked absolute, external or unsafe path: https://example.invalid/",
+  "text_coverage": {
+    "attempted_components": 2,
+    "excluded_categories": [
+      "ordinary_egui_labels",
+      "native_selectable_text"
+    ],
+    "failed_components": 0,
+    "measured_components": 2,
+    "native_text_controls": 3,
+    "observed_native_controls": 0,
+    "successful_components": 2
+  },
+  "text_layouts": [
+    {
+      "allocated_rect": {
+        "max_x": 97.375,
+        "max_y": 109,
+        "min_x": 17,
+        "min_y": 81
+      },
+      "baseline": null,
+      "clip_rect": {
+        "max_x": 97.375,
+        "max_y": 109,
+        "min_x": 17,
+        "min_y": 81
+      },
+      "component_id": {
+        "instance": 3770449246017495,
+        "kind": "action_button"
+      },
+      "declared_max_lines": 1,
+      "horizontal_alignment": "centre",
+      "interaction": "inert",
+      "line_count": 1,
+      "overflow": "ellipsis",
+      "painted_rect": {
+        "max_x": 97.1875,
+        "max_y": 103.5,
+        "min_x": 17.1875,
+        "min_y": 86.5
+      },
+      "parent_id": null,
+      "role": "button_label",
+      "truncated": false,
+      "vertical_alignment": "centre"
+    },
+    {
+      "allocated_rect": {
+        "max_x": 211,
+        "max_y": 109,
+        "min_x": 122.375,
+        "min_y": 81
+      },
+      "baseline": null,
+      "clip_rect": {
+        "max_x": 211,
+        "max_y": 109,
+        "min_x": 122.375,
+        "min_y": 81
+      },
+      "component_id": {
+        "instance": 681448778204368,
+        "kind": "action_button"
+      },
+      "declared_max_lines": 1,
+      "horizontal_alignment": "centre",
+      "interaction": "inert",
+      "line_count": 1,
+      "overflow": "ellipsis",
+      "painted_rect": {
+        "max_x": 211,
+        "max_y": 103.5,
+        "min_x": 122.375,
+        "min_y": 86.5
+      },
+      "parent_id": null,
+      "role": "button_label",
+      "truncated": false,
+      "vertical_alignment": "centre"
+    }
+  ]
+}

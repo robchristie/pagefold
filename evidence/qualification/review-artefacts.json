@@ -1,0 +1,1010 @@
+[
+  {
+    "bytes": 83,
+    "kind": "file",
+    "path": ".gitignore",
+    "sha256": "a8d2542af1cdab5e27a2bfbccf19cc5f39c3a96c6db24552d4e8bf702f9a867c",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 98964,
+    "kind": "file",
+    "path": "Cargo.lock",
+    "sha256": "ac08503a7dde2f7d1094db1ff704363e8a1b03b58e94ff212d94e4a2836b31f0",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1069,
+    "kind": "file",
+    "path": "Cargo.toml",
+    "sha256": "32857340fb3de6633f38f147eb106c184bf499300e835ff691c38a32932798d4",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 4142,
+    "kind": "file",
+    "path": "README.md",
+    "sha256": "9b2ed44df3d64e806875d75fa44f2f03c2a147587a9cbc04cdeda9e8609911f3",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib0",
+    "sha256": "24785749216a95342ea80c141eb6fb858323f820fb0ff7d558ffb5cc7b8d2266",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib1",
+    "sha256": "26b0d2696bc6bafc6fa2ec21d4dbe92d4b45f162bc01498a345dd9a7114ae74f",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib10",
+    "sha256": "6e0a4dea6629dc6bf4dcdded54f4a7da51be3abf98d0d7153f83a3a05001701f",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib11",
+    "sha256": "a5a288803c02c27814b38df014037c6feb51a0024e717fd0cdc9e1ec560bec9a",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1046595,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib12",
+    "sha256": "272a2415b02f240dcc915bb3abc295d6786e0c296b598d2270f49940b4d3338a",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib2",
+    "sha256": "5c7cd2405cb1da45c5b58b5e6550780a7a24eaebfde54dd131628d251029f079",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib3",
+    "sha256": "48132c1edc271e22376d657619a9392aa6ffae9eb5cd0a1a98e523a5357f30e3",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib4",
+    "sha256": "87d397155dd322808e197a07d1b24860d82063fda39717c759837d0821241494",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib5",
+    "sha256": "f6dca3176ea67181590cd1e5979d01feb77b3d06578bead217e3035c1471112b",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib6",
+    "sha256": "2b93b3074926fbbef314e610f15429a1e665c41ffbbefaf8010ccd8a08d6488f",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib7",
+    "sha256": "0c4515b1bd4a1cf4871ef79c622b67ad4624a281f755ef1e60cd422c8c6766e3",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib8",
+    "sha256": "7714699ff5bf4cb1d076e0306cc4a673e96813d247cd5819546bf724f06a981b",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1048576,
+    "kind": "file",
+    "path": "assets/fonts/NotoSansCJKjp-Regular.zlib9",
+    "sha256": "f5a5400deafacae2379664b3498a3c7cfeecc4de4d5fd8d2e285231c3dcb0aee",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 4301,
+    "kind": "file",
+    "path": "assets/fonts/OFL.txt",
+    "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1236,
+    "kind": "file",
+    "path": "assets/fonts/README.md",
+    "sha256": "2cb6543941a155613c40cd1cd530bdcc23fe38ddd14e1a4d85ae7ee8b18dc0c4",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 77,
+    "kind": "file",
+    "path": "build.rs",
+    "sha256": "1a1a91b2e079fd7b160dc0ade88c22974dd9abe3f5dbed075b21454b05caa1d2",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1926,
+    "kind": "file",
+    "path": "docs/active-plan.md",
+    "sha256": "9562bea0a0a420b3f766c3c6acadc41bc68e906b513039146021274250d06dc5",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3952,
+    "kind": "file",
+    "path": "docs/content-contract.md",
+    "sha256": "a9f4357f1a1057b2abf2146af88cf5693f9d51fa47394e7c9f1693759a3bc3f4",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 11858,
+    "kind": "file",
+    "path": "evidence/qualification/accepted-inputs.json",
+    "sha256": "7e66837e50ef99f3bcff27b1d3cc5992c2ce7685ea41a4eb713bc0c65a6f05a8",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 314,
+    "kind": "file",
+    "path": "evidence/qualification/accessibility.json",
+    "sha256": "3bd2168f63b0a9d90b684ac0fb53eeb58e929bd9e06ceed10cd4bd304039307e",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 189067,
+    "kind": "file",
+    "path": "evidence/qualification/actions.jsonl",
+    "sha256": "04daad909792ec77b019b738611565de9f518d9d06cd4141c1e3639aec06e317",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 411,
+    "kind": "file",
+    "path": "evidence/qualification/added-result-capture.json",
+    "sha256": "10a59be9eb6fe48f5304f8bec899ef292345187680ae8c7eb3f6dc660c04d0d5",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3514,
+    "kind": "file",
+    "path": "evidence/qualification/added-result-state.json",
+    "sha256": "10623ceff152a9b9b08b212a29e9daa4d4cc5db57aa26051f629298ab666b0ea",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 31418,
+    "kind": "file",
+    "path": "evidence/qualification/added-result.png",
+    "sha256": "0cc239012b69342cf60a9c83bdc242ab6bd00df97b1fbbae3ee04b6f026f6323",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 417,
+    "kind": "file",
+    "path": "evidence/qualification/attachment-removed-capture.json",
+    "sha256": "41650bcf2eace509478b34be2b6c945de51fdd2d1675cbf9182452432aa13854",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 4091,
+    "kind": "file",
+    "path": "evidence/qualification/attachment-removed-state.json",
+    "sha256": "8f2ce3b0dc6e2172f5f367aad0611f9c1fa763b453fae5e745b1589737ab5174",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 74503,
+    "kind": "file",
+    "path": "evidence/qualification/attachment-removed.png",
+    "sha256": "c777ac487fa0f4f10d8d0baa225d791ee927b9d0e095b7952af65a6e48e29e99",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 418,
+    "kind": "file",
+    "path": "evidence/qualification/attachment-replaced-capture.json",
+    "sha256": "743f7ded0f7da95221a8c780ebc095896662ed8427b1557c5922afbe21f4cc74",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 4091,
+    "kind": "file",
+    "path": "evidence/qualification/attachment-replaced-state.json",
+    "sha256": "2b949ef19b652be626c38f9495b39166b17e727e21a75e17a56536159cc08bdb",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 77809,
+    "kind": "file",
+    "path": "evidence/qualification/attachment-replaced.png",
+    "sha256": "6607e2e233f5555f39df18aeb2f5d36f2b145f60306a7098b5a85a023ab7bbaf",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 409,
+    "kind": "file",
+    "path": "evidence/qualification/back-home-capture.json",
+    "sha256": "b5a94729266b2eaa263ebad740938200c30b9f80e7fe15a4fecdb47d5410d609",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3888,
+    "kind": "file",
+    "path": "evidence/qualification/back-home-state.json",
+    "sha256": "d4cbdddb78ebb711c754ecb07943b11ad64711fe0f2bf5ae645e616569d16765",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 66536,
+    "kind": "file",
+    "path": "evidence/qualification/back-home.png",
+    "sha256": "eea78ac6997967f9c6427e4a72ea7bbfc9a09d2f80e38c59747c9c158b05e8ea",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 407,
+    "kind": "file",
+    "path": "evidence/qualification/blocked-capture.json",
+    "sha256": "b3af51b9f361abb51af1f921e290f51f331d491d0f51c088a2daa8d2140f4c6b",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3891,
+    "kind": "file",
+    "path": "evidence/qualification/blocked-state.json",
+    "sha256": "17aa27eed4301cdd6d37bcb3d90777f73a78f1018e22b942d33fb3fc7c75f876",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 67027,
+    "kind": "file",
+    "path": "evidence/qualification/blocked.png",
+    "sha256": "fe19a6f24e674016ffd9a1bb682882776f1e44570d9525485477bfe08f130956",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 411,
+    "kind": "file",
+    "path": "evidence/qualification/deleted-open-capture.json",
+    "sha256": "569fba1e29f3a6329f36595f7a7b7d96fb307e56969762c522ab7a64cc19163c",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3294,
+    "kind": "file",
+    "path": "evidence/qualification/deleted-open-state.json",
+    "sha256": "17139728f0df8da02c4e98be6c956dfe377fd9afeff2eaf43e3cf4e18b14aeef",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 36648,
+    "kind": "file",
+    "path": "evidence/qualification/deleted-open.png",
+    "sha256": "f8cb3a774bd9ea7e537855b022f9390e077a7307bd896fe4a86235df341346d6",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 405,
+    "kind": "file",
+    "path": "evidence/qualification/desktop-layout.json",
+    "sha256": "f7472f0e5172ac9ad80b5fb47386cec66f5cea5ca6b80542e556c6b89d82678c",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 214,
+    "kind": "file",
+    "path": "evidence/qualification/doctor.json",
+    "sha256": "502fdaf4558a20f8434d88c79690f2a6ccc206685839e71d3087f31131794201",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 76,
+    "kind": "file",
+    "path": "evidence/qualification/document-state.json",
+    "sha256": "16b7fdb5ed5fa6c2d2caaeb1f3b46fa44642d0f5260e5232209da47df13d4c90",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1396,
+    "kind": "file",
+    "path": "evidence/qualification/dom-geometry.json",
+    "sha256": "a6bd61a3260ffacfd1a80b408090c930fab6f9b6976b87fee4f2b3e3c0943e0b",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1325,
+    "kind": "file",
+    "path": "evidence/qualification/dom.json",
+    "sha256": "aa3dc805a3eb60fb51ff9b5e6cbfad7b31b17dd04b2ce3e5632243a491c86a01",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 410,
+    "kind": "file",
+    "path": "evidence/qualification/edited-open-capture.json",
+    "sha256": "bfcbd7d95ca0ad68e0e294381da625c72ae4936dde6a1b2372d56f0ff8e6ca8e",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3296,
+    "kind": "file",
+    "path": "evidence/qualification/edited-open-state.json",
+    "sha256": "dc018946376044888d76adc70804e01f7a34d5977d775d5125d9bdca4da2cce0",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 31646,
+    "kind": "file",
+    "path": "evidence/qualification/edited-open.png",
+    "sha256": "c5a41b66fe7d03d27a583ecddb704321d5485a55eb8c15fd3242a743f0c997fd",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 405,
+    "kind": "file",
+    "path": "evidence/qualification/empty-capture.json",
+    "sha256": "cef5194528221d161ecadcc98ff901ef389682b2d2bc0d8a4bd86dcc1817152e",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 415,
+    "kind": "file",
+    "path": "evidence/qualification/empty-directory-capture.json",
+    "sha256": "8d19727a3a3cb5872e09abfe0b71a58180e72bb7474adab9ac4ef02f2731f214",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3270,
+    "kind": "file",
+    "path": "evidence/qualification/empty-directory-state.json",
+    "sha256": "d25b421ed7ecfe28029af26064d261b4551b50281b5d76885412cb7d308381b0",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 31523,
+    "kind": "file",
+    "path": "evidence/qualification/empty-directory.png",
+    "sha256": "4721680a517a39d5a54a25691ce948df6bd3897638569cdfc4a2b8a75a54f954",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3142,
+    "kind": "file",
+    "path": "evidence/qualification/empty-state.json",
+    "sha256": "b22d5a5f8b1f08aae1240879758682201e16dd14ab5bb91920d39abd4c7d64c6",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 25320,
+    "kind": "file",
+    "path": "evidence/qualification/empty.png",
+    "sha256": "7c4a7ea7cde0ad23a611fab0e336a365f0764bff25579536aac012412ac38dff",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 408,
+    "kind": "file",
+    "path": "evidence/qualification/external-capture.json",
+    "sha256": "ac2fdd5be855808e9c8cde5612682f71951c8332e8cd980a8fea63c7f32cbd02",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3899,
+    "kind": "file",
+    "path": "evidence/qualification/external-state.json",
+    "sha256": "55c9e45504b69da9aef9dbd5c4bab3620f223181121dc6e9eb84e9582ef541ec",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 67506,
+    "kind": "file",
+    "path": "evidence/qualification/external.png",
+    "sha256": "bf692b4fd0595cd551563c0c8a6f63571f5a08cc06287ccfde034b436ceaf95b",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 414,
+    "kind": "file",
+    "path": "evidence/qualification/failed-refresh-capture.json",
+    "sha256": "27d81b7c0b52f71d2a6a6c7912f4c0a378743e59805f32794eeb49ca41d72725",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 4160,
+    "kind": "file",
+    "path": "evidence/qualification/failed-refresh-state.json",
+    "sha256": "a57a02cfe660619d02e9e892b0e059dd298d0a8a52013a761b050a8155662d55",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 78730,
+    "kind": "file",
+    "path": "evidence/qualification/failed-refresh.png",
+    "sha256": "90f023b5e72da3b7273b7aab8534179adb6bd32bbb5fb679048e378f5af68895",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 141,
+    "kind": "file",
+    "path": "evidence/qualification/final-checks.log",
+    "sha256": "c7225fdd38b8bede8fa756ab3531d41f5d886e3f0f610234fac9c9992e0b4c3f",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1503,
+    "kind": "file",
+    "path": "evidence/qualification/final-flow.json",
+    "sha256": "8284d8da73755c712ce70025dde5dbbac66bf3c0191c81adfc7869b337fccf82",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 706,
+    "kind": "file",
+    "path": "evidence/qualification/fixtures-after.json",
+    "sha256": "cfd508854a6399f2ec4aaef3d8a896fe974a913a34bcb6aa88fedde7d3a5a9db",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 706,
+    "kind": "file",
+    "path": "evidence/qualification/fixtures-before.json",
+    "sha256": "cfd508854a6399f2ec4aaef3d8a896fe974a913a34bcb6aa88fedde7d3a5a9db",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1398,
+    "kind": "file",
+    "path": "evidence/qualification/flow.json",
+    "sha256": "4d3f2d6f644e98a820648f26b5eb348ee720ef99364bab87031b73696e9cc2b9",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 404,
+    "kind": "file",
+    "path": "evidence/qualification/home-capture.json",
+    "sha256": "79563ca33c344a92dc12aea5e9a44b2389b762f7a2ff2ea4c8e35be1ff69cb35",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3878,
+    "kind": "file",
+    "path": "evidence/qualification/home-state.json",
+    "sha256": "009f3b9a20ffbd0ee43c1dce72e5ae8922891050741dd662260f513341af5495",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 65816,
+    "kind": "file",
+    "path": "evidence/qualification/home.png",
+    "sha256": "33075cb2a9f05f0d1441c68a9a99783cf3ca12013a33c8ce8df20f6956d7d0c7",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 414,
+    "kind": "file",
+    "path": "evidence/qualification/keyboard-focus-capture.json",
+    "sha256": "526985a88ea471b9fdf94aba021a80e849aab3246347d78c9aacdac078cec4a0",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3140,
+    "kind": "file",
+    "path": "evidence/qualification/keyboard-focus-state.json",
+    "sha256": "36305366dcdd654becd439ae27dbfded9c150b1db0ef82f58330751e00765a8b",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 28427,
+    "kind": "file",
+    "path": "evidence/qualification/keyboard-focus.png",
+    "sha256": "33b7ec34b41e6781d3a661028be3db347384df14b25aa99c337e4e9373dca3c4",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3151,
+    "kind": "file",
+    "path": "evidence/qualification/lantern-capabilities.json",
+    "sha256": "ff0d6c8c4565fedfbea4d9306176d09d8c39447a9cd1179053cebae9fd538004",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 406,
+    "kind": "file",
+    "path": "evidence/qualification/loading-capture.json",
+    "sha256": "874d0d627e320855626c94b09d36587936d28f12fa1893043bcf4d0da420927d",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 4088,
+    "kind": "file",
+    "path": "evidence/qualification/loading-state.json",
+    "sha256": "0d09386a963158f3b21f11be3596cec8c844cf8c6338409b4b515b98e727c837",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 74861,
+    "kind": "file",
+    "path": "evidence/qualification/loading.png",
+    "sha256": "413cec077ee7cb60bbbfa89df36417e356bd483afadebd8c08de0ded98107ca4",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 418,
+    "kind": "file",
+    "path": "evidence/qualification/missing-image-link-capture.json",
+    "sha256": "b2169a48514d3dddaa64a0c9d3bf767b5fdd2077a898e9a9d6b3c679d45dc5da",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3883,
+    "kind": "file",
+    "path": "evidence/qualification/missing-image-link-state.json",
+    "sha256": "f60d9eeca591c950b354a59e2bd8c0431b0c78e284b24b8b94185b147c1c48da",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 66602,
+    "kind": "file",
+    "path": "evidence/qualification/missing-image-link.png",
+    "sha256": "1660924ff5040e719c21411257f428fef3dc2bf0569069bc136e4a465784fd26",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 412,
+    "kind": "file",
+    "path": "evidence/qualification/missing-page-capture.json",
+    "sha256": "4e9f1c5ce05c4559d42ecb95af210b6aa5e8fc08c4f4901d25f185dc4e1c91d1",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3870,
+    "kind": "file",
+    "path": "evidence/qualification/missing-page-state.json",
+    "sha256": "42a5724a04ab13a916a9178295439fa6de27c40eac471f2c4941b014bb1eae40",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 65246,
+    "kind": "file",
+    "path": "evidence/qualification/missing-page.png",
+    "sha256": "6f0d834a93bc1910bd74ce4e21ffff3f9f4ad17b17f686b31859340ca955882b",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 410,
+    "kind": "file",
+    "path": "evidence/qualification/narrow-home-capture.json",
+    "sha256": "2740ab9f4dd1282fefdb9da859a554315219ef270b981d4a0183a5d29a9bf766",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3882,
+    "kind": "file",
+    "path": "evidence/qualification/narrow-home-state.json",
+    "sha256": "5f15447fc3da0ef288f9f22664fded929d7cfc3fb940549eb75ed016b40966c1",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 73380,
+    "kind": "file",
+    "path": "evidence/qualification/narrow-home.png",
+    "sha256": "77646bdc6d18d4f9839a4e1d74f3d9f6ed12b774d6bf5fce88e24b72f8f1ae57",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 765,
+    "kind": "file",
+    "path": "evidence/qualification/narrow-layout.json",
+    "sha256": "9cb6587a1fd3a06e5f7a2462b73d90e707706eb5368bfd56de1d2825cbf22e9f",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 413,
+    "kind": "file",
+    "path": "evidence/qualification/narrow-reading-capture.json",
+    "sha256": "62049223ba46464349afd52d31e9de9302c7a0f2036ffd2884810eb3d7138608",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3892,
+    "kind": "file",
+    "path": "evidence/qualification/narrow-reading-state.json",
+    "sha256": "f5aa0669405fc1d97dd09a028fc34cb0f4997dc53e411adee9070319d34b74de",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 59927,
+    "kind": "file",
+    "path": "evidence/qualification/narrow-reading.png",
+    "sha256": "8ecf5a5982ae71570635482e0f05c9e48d91284cd96e8d65865024b65c6d54b7",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 412,
+    "kind": "file",
+    "path": "evidence/qualification/narrow-search-capture.json",
+    "sha256": "4e72ab741a0b1f92a32345e17d54ae310329d92b6af036dc94a93193c8dab924",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3498,
+    "kind": "file",
+    "path": "evidence/qualification/narrow-search-state.json",
+    "sha256": "5f97868c357c4355cd07789b0ce6c595a389f6fc1d9546484e4b655864a69005",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 32078,
+    "kind": "file",
+    "path": "evidence/qualification/narrow-search.png",
+    "sha256": "0a031c9efe6e4a3a3a8eec23895d683182976fbdfe9463184be297a77581edca",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 409,
+    "kind": "file",
+    "path": "evidence/qualification/no-results-capture.json",
+    "sha256": "647c83690c0ba8353ab56aca4501d2661f3ea87d714da49cfa12222e5a212392",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3291,
+    "kind": "file",
+    "path": "evidence/qualification/no-results-state.json",
+    "sha256": "d414fa771b419388ff09d799c48e69d1b26ebf464f4124e9c385d0b935d30b8a",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 32263,
+    "kind": "file",
+    "path": "evidence/qualification/no-results.png",
+    "sha256": "4992bacb3bd889225ffb7bdacdb73360099e6779f5824c9845346614a711bda6",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 181,
+    "kind": "file",
+    "path": "evidence/qualification/page.json",
+    "sha256": "99cfb2b58082eac28a5fc79c2f620012b8f5b7edf1c467e1b1d40fd03f6cfd64",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 407,
+    "kind": "file",
+    "path": "evidence/qualification/reading-capture.json",
+    "sha256": "727cfc4f2cae5060cab929969e567d44a89a61b5cda5a95bd2af6fc74779ada6",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 414,
+    "kind": "file",
+    "path": "evidence/qualification/reading-return-capture.json",
+    "sha256": "7809deb7f210efca852bd5325eefa0f9b9f6c8c1071dcf984668c2a2f153ae22",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3898,
+    "kind": "file",
+    "path": "evidence/qualification/reading-return-state.json",
+    "sha256": "1396637e63a81d1acf3d6179cad014844e17ee0420fd01de1c5fb799b4d1fcee",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 70877,
+    "kind": "file",
+    "path": "evidence/qualification/reading-return.png",
+    "sha256": "03c125b1f8b17d5d305d57a1b98d6b0210bef5434f859c284d5e69d98b65e7d2",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 416,
+    "kind": "file",
+    "path": "evidence/qualification/reading-scrolled-capture.json",
+    "sha256": "8801b8d43bf57339c08870580c9fc8d66c3b1541ab34b4706dc004fad0dd9451",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3914,
+    "kind": "file",
+    "path": "evidence/qualification/reading-scrolled-state.json",
+    "sha256": "99e44dc5af764fb06d6be04bf2552297424e9f42c89eea5a1f0837a2bcdf2698",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 73099,
+    "kind": "file",
+    "path": "evidence/qualification/reading-scrolled.png",
+    "sha256": "c173eed7f153404df0971c2542906abaa475cc52a26d8df5ca9df1b20e4f579b",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3898,
+    "kind": "file",
+    "path": "evidence/qualification/reading-state.json",
+    "sha256": "1396637e63a81d1acf3d6179cad014844e17ee0420fd01de1c5fb799b4d1fcee",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 70877,
+    "kind": "file",
+    "path": "evidence/qualification/reading.png",
+    "sha256": "03c125b1f8b17d5d305d57a1b98d6b0210bef5434f859c284d5e69d98b65e7d2",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 173815,
+    "kind": "file",
+    "path": "evidence/qualification/refresh-actions.json",
+    "sha256": "0763d1113dd97bbda5a735cdd91332c858411a7ab93147e85949a02c7d945330",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 669,
+    "kind": "file",
+    "path": "evidence/qualification/refresh-generation-attempt.log",
+    "sha256": "08271a6a61ff054a7ac01e3a883d75cbf276c7f6265c8ab2500a6f2a8e34ae53",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 436,
+    "kind": "file",
+    "path": "evidence/qualification/refresh-initial-attempt.log",
+    "sha256": "e4fde6420b3c78d8ce4ebf09fdcd4bc8456275ce460e5f6b93b3c800ff860538",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 417,
+    "kind": "file",
+    "path": "evidence/qualification/refresh-recovered-capture.json",
+    "sha256": "551aa5ae2b18c59d1c4a0db57e12b993d17592b77ad07514f4afa199bb007820",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 4091,
+    "kind": "file",
+    "path": "evidence/qualification/refresh-recovered-state.json",
+    "sha256": "8f2ce3b0dc6e2172f5f367aad0611f9c1fa763b453fae5e745b1589737ab5174",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 74503,
+    "kind": "file",
+    "path": "evidence/qualification/refresh-recovered.png",
+    "sha256": "c777ac487fa0f4f10d8d0baa225d791ee927b9d0e095b7952af65a6e48e29e99",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 199,
+    "kind": "file",
+    "path": "evidence/qualification/refresh.log",
+    "sha256": "6da8673f85c1fd68f9c18bcdb27fb7ca92044701c93d682d8391a981d7933640",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 411,
+    "kind": "file",
+    "path": "evidence/qualification/renamed-open-capture.json",
+    "sha256": "0fcff83b030f3afae4c3d0ad4519043bb7658529e94a173d13abe1801a89214f",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3517,
+    "kind": "file",
+    "path": "evidence/qualification/renamed-open-state.json",
+    "sha256": "504c6ba46e755e3a0338efded03d3b47651e0db792a1225fc66e9e5bb13a9872",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 37701,
+    "kind": "file",
+    "path": "evidence/qualification/renamed-open.png",
+    "sha256": "70f955b510ed6cead10976a0f8761ebab483cd1b216810db4adfd0bd6fea8eb4",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 9627,
+    "kind": "file",
+    "path": "evidence/qualification/report.md",
+    "sha256": "ca4817a2f1523729c4770cafbadb4037411ba9c5de39418e25e42d50aa09926b",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 1154,
+    "kind": "file",
+    "path": "evidence/qualification/runtime-identities.json",
+    "sha256": "5805f776eb9e22f8706e1be8ec9ffe75598ec9cced65d00f9a50d8c4d9e130c1",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 415,
+    "kind": "file",
+    "path": "evidence/qualification/second-directory-capture.json",
+    "sha256": "a85ee8adc75834d7b86939109759a4e34df11e36be082d8d16a0c9d65b9fbf3f",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3520,
+    "kind": "file",
+    "path": "evidence/qualification/second-directory-state.json",
+    "sha256": "ef53168a7b19c5e6eec9552610fc36011867e5d25c7cb064a74f62bcb93f4812",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 35624,
+    "kind": "file",
+    "path": "evidence/qualification/second-directory.png",
+    "sha256": "b08b199a10121b658d4b28bcc671c71f721c11c057dee299130b030ac3845bee",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 407,
+    "kind": "file",
+    "path": "evidence/qualification/unicode-capture.json",
+    "sha256": "81f38414aa70e3c77d005fd2e9345b56e7a9ea8cce8ab2cbd6f16e570bd69146",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3891,
+    "kind": "file",
+    "path": "evidence/qualification/unicode-state.json",
+    "sha256": "de1984736dddb2661da60d250d000459283fb19956c53742410a5dc2a4b08af1",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 41015,
+    "kind": "file",
+    "path": "evidence/qualification/unicode.png",
+    "sha256": "d084ef77850d5e31f159359049f9e730c0b87f36da220ca8339af3fc7e5e7a4f",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 411,
+    "kind": "file",
+    "path": "evidence/qualification/unsupported-capture.json",
+    "sha256": "048d6666cdd175ee11b0b4f7e1015c4efd759f52e488f3495ab46304bc5a8561",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3926,
+    "kind": "file",
+    "path": "evidence/qualification/unsupported-state.json",
+    "sha256": "2f3c099b4212000a1dfb07fea0603d5860ce80959009f4aff13ae981a2dd1ee0",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 68946,
+    "kind": "file",
+    "path": "evidence/qualification/unsupported.png",
+    "sha256": "598ae8d6b3f1e6578f28beb84a3e4958d016581f4f0f76bf363c851cbd11668e",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 2306,
+    "kind": "file",
+    "path": "evidence/qualification/verification.log",
+    "sha256": "92590a69aee449701328473920688681310a290244335f17df062ee2ca06fc3e",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 25020,
+    "kind": "file",
+    "path": "src/lib.rs",
+    "sha256": "b63e1f559faeed09843d1d2b196a1b83611d1556f7a4e207c94442615ceec632",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 196,
+    "kind": "file",
+    "path": "src/main.rs",
+    "sha256": "e8cfc2783d89aaf668c32045871749f58a85cad18f2bdc7abe1dc475c9daaf9d",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 8462,
+    "kind": "file",
+    "path": "tests/test_workspace.py",
+    "sha256": "eefd35687d1163bc8e92d7b6105966b8b192bc41c577bb18108934dc312e85ac",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 874,
+    "kind": "file",
+    "path": "tools/browser-action.mjs",
+    "sha256": "e98dec3391513ab775a9557582df7e0f167ebd7893427e5ff938953bf444b61a",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 2535,
+    "kind": "file",
+    "path": "tools/capture.mjs",
+    "sha256": "3269850144ab06104845af6405503dd57d9dc153743b0531322b896b7b5c43d5",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3149,
+    "kind": "file",
+    "path": "tools/check-qualification.py",
+    "sha256": "3b6d0794e07e500291c1be4a9842b0ecf13ef235a56317c717c5e5dba6d24091",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 3423,
+    "kind": "file",
+    "path": "tools/implementation-smoke.mjs",
+    "sha256": "c3b4fb8fad559b377cb197ec182133b08c0d47b936f91153eb34286ced2bb0ae",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 744,
+    "kind": "file",
+    "path": "tools/inventory.py",
+    "sha256": "1d59101e8fcec02ea9dcd837320301c8e3002d281c91495988b956aa7470b68b",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 2315,
+    "kind": "file",
+    "path": "tools/qualification-action.mjs",
+    "sha256": "25db779e92a30637f870f9217e7000fdb06f9ecd111d597153f4c0616148f1f5",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 5777,
+    "kind": "file",
+    "path": "tools/qualification-refresh.mjs",
+    "sha256": "6fa61fbfd9adaad1e68d2206c87f018eb9c719d4a4fa17dfdb6368af4f2b8a54",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 9280,
+    "kind": "file",
+    "path": "tools/server.py",
+    "sha256": "db7d4d53776bec85222bbe958dd06b9d10f90f0c676ec4b693baaaef72172688",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 964,
+    "kind": "file",
+    "path": "tools/start-inspection-browser.sh",
+    "sha256": "d3f2dc4976b29f350f237bfc8b2df1b9923b197c968ee26d5e58172aa5d50c28",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 489,
+    "kind": "file",
+    "path": "tools/verify.sh",
+    "sha256": "134f612d3f98e0242253f9893e54ee573bb000fa501fd56d02383f469dbeb32e",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 228,
+    "kind": "file",
+    "path": "web/app.js",
+    "sha256": "2bc80190fb4fa63d8c5edd59c2ec6876503a857191e24ab72743dc9ab60e4070",
+    "store": "/nvme/development/pagefold"
+  },
+  {
+    "bytes": 303,
+    "kind": "file",
+    "path": "web/index.html",
+    "sha256": "8f833585aa4143015d390811f8f353d36627764f9588126052974df58298cf44",
+    "store": "/nvme/development/pagefold"
+  }
+]

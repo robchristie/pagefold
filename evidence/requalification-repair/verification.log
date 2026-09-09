@@ -1,0 +1,42 @@
+test_external_add_edit_rename_delete_attachment_and_regeneration (test_workspace.WorkspaceTests.test_external_add_edit_rename_delete_attachment_and_regeneration) ... ok
+test_state_overlap_rejected_before_writes (test_workspace.WorkspaceTests.test_state_overlap_rejected_before_writes) ... ok
+test_supplied_fixtures_read_only_and_isolated_copy_changes (test_workspace.WorkspaceTests.test_supplied_fixtures_read_only_and_isolated_copy_changes) ... ok
+test_symlinks_special_files_and_index_hardlinks (test_workspace.WorkspaceTests.test_symlinks_special_files_and_index_hardlinks) ... ok
+test_transport_uses_same_snapshot_and_rejects_cross_origin (test_workspace.WorkspaceTests.test_transport_uses_same_snapshot_and_rejects_cross_origin) ... ok
+test_unreadable_unsupported_and_limits_are_explicit (test_workspace.WorkspaceTests.test_unreadable_unsupported_and_limits_are_explicit) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.026s
+
+OK
+   Compiling pagefold-probe v0.1.0 (/nvme/development/pagefold)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.13s
+     Running unittests src/lib.rs (target/debug/deps/pagefold_probe-e776d74969079c11)
+
+running 4 tests
+test tests::paths_and_encoded_urls_are_contained ... ok
+test tests::images_and_html_cannot_escape_the_renderer ... ok
+test tests::stale_warning_survives_navigation_until_a_successful_snapshot ... ok
+test tests::japanese_font_contains_the_calibrated_glyphs ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.25s
+
+     Running unittests src/main.rs (target/debug/deps/pagefold_probe-ae9999115dbf9dd2)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests pagefold_probe
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Compiling pagefold-probe v0.1.0 (/nvme/development/pagefold)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.29s
+   Compiling pagefold-probe v0.1.0 (/nvme/development/pagefold)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.89s
+   Compiling pagefold-probe v0.1.0 (/nvme/development/pagefold)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.98s
+PASS: fixture inventory and all content hashes unchanged

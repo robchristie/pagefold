@@ -1,0 +1,36 @@
+[2:2:0909/184745.994081:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:208] open /home/rob/.config/google-chrome-for-testing/Crash Reports/settings.dat: Read-only file system (30)
+[2:2:0909/184745.994138:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:208] open /home/rob/.config/google-chrome-for-testing/Crash Reports/settings.dat: Read-only file system (30)
+[2:17:0909/184746.013034:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /home/rob/pixi/.pixi/envs/default/var/run/dbus/system_bus_socket: No such file or directory
+[2:17:0909/184746.016704:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /home/rob/pixi/.pixi/envs/default/var/run/dbus/system_bus_socket: No such file or directory
+[2:17:0909/184746.016756:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /home/rob/pixi/.pixi/envs/default/var/run/dbus/system_bus_socket: No such file or directory
+[2:14:0909/184746.025445:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:208] open /home/rob/.config/google-chrome-for-testing/Crash Reports/settings.dat: Read-only file system (30)
+
+DevTools listening on ws://127.0.0.1:9317/devtools/browser/e6910941-bb94-4397-b8b1-a9585c4e1b8a
+[2:17:0909/184746.061274:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /home/rob/pixi/.pixi/envs/default/var/run/dbus/system_bus_socket: No such file or directory
+[2:17:0909/184746.061291:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /home/rob/pixi/.pixi/envs/default/var/run/dbus/system_bus_socket: No such file or directory
+[2:2:0909/184746.061333:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.systemd1.Manager.StartTransientUnit: object_path= /org/freedesktop/systemd1: org.freedesktop.DBus.Error.InvalidArgs: Process 2 is a kernel thread, refusing.
+[2:2:0909/184746.097926:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.Properties.GetAll: object_path= /org/freedesktop/UPower/devices/DisplayDevice: unknown error type: 
+[2:14:0909/184746.484841:ERROR:crypto/nss_util.cc:256] Error initializing NSS with a persistent database (sql:/home/rob/.local/share/pki/nssdb): NSS error code: -8126
+[2:17:0909/184750.915740:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT
+[2:17:0909/184817.562247:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT
+[2:17:0909/184908.890316:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT
+Warning: loader_scanned_icd_add: Could not get 'vkCreateInstance' via 'vk_icdGetInstanceProcAddr' for ICD libGLX_nvidia.so.0
+Warning: loader_icd_scan: Failed loading library associated with ICD JSON libGLX_nvidia.so.0. Ignoring this JSON
+Warning: vkCreateInstance: Found no drivers!
+Warning: vkCreateInstance failed with VK_ERROR_INCOMPATIBLE_DRIVER
+    at CheckVkSuccessImpl (../../third_party/dawn/src/dawn/native/vulkan/VulkanError.cpp:106)
+
+Warning: maxDynamicUniformBuffersPerPipelineLayout artificially reduced from 72 to 16 to fit dynamic offset allocation limit.
+Warning: maxDynamicStorageBuffersPerPipelineLayout artificially reduced from 64 to 16 to fit dynamic offset allocation limit.
+[2:17:0909/185108.940690:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT
+[2:17:0909/185419.580539:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT
+[0909/185745.994211:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:153] open /home/rob/.config/google-chrome-for-testing/Crash Reports/pending/03c60429-14a9-4b79-8dc3-6b9665b18310.lock: Read-only file system (30)
+[0909/185745.994293:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:153] open /home/rob/.config/google-chrome-for-testing/Crash Reports/pending/03c60429-14a9-4b79-8dc3-6b9665b18310.lock: Read-only file system (30)
+[0909/185745.994309:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:153] open /home/rob/.config/google-chrome-for-testing/Crash Reports/pending/0c90da84-0990-413c-942a-c2261c4ec92d.lock: Read-only file system (30)
+[0909/185745.994315:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:153] open /home/rob/.config/google-chrome-for-testing/Crash Reports/pending/0c90da84-0990-413c-942a-c2261c4ec92d.lock: Read-only file system (30)
+[0909/185745.994320:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:153] open /home/rob/.config/google-chrome-for-testing/Crash Reports/pending/8a8720b6-d424-43b0-a551-016b75713c3a.lock: Read-only file system (30)
+[0909/185745.994324:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:153] open /home/rob/.config/google-chrome-for-testing/Crash Reports/pending/8a8720b6-d424-43b0-a551-016b75713c3a.lock: Read-only file system (30)
+[0909/185745.994363:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:153] open /home/rob/.config/google-chrome-for-testing/Crash Reports/pending/03c60429-14a9-4b79-8dc3-6b9665b18310.lock: Read-only file system (30)
+[0909/185745.994369:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:153] open /home/rob/.config/google-chrome-for-testing/Crash Reports/pending/0c90da84-0990-413c-942a-c2261c4ec92d.lock: Read-only file system (30)
+[0909/185745.994372:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:153] open /home/rob/.config/google-chrome-for-testing/Crash Reports/pending/8a8720b6-d424-43b0-a551-016b75713c3a.lock: Read-only file system (30)
+[2:17:0909/190035.634113:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT
