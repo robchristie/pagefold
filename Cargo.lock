@@ -2115,6 +2115,7 @@ dependencies = [
 [[package]]
 name = "polyorama-core"
 version = "0.1.6"
+source = "git+https://github.com/robchristie/polyorama.git?rev=fba3db87aaeb4a7a9f1bbfd0ba59fa0aac713b21#fba3db87aaeb4a7a9f1bbfd0ba59fa0aac713b21"
 dependencies = [
  "serde",
  "serde_json",
@@ -2124,6 +2125,7 @@ dependencies = [
 [[package]]
 name = "polyorama-render-wgpu"
 version = "0.1.6"
+source = "git+https://github.com/robchristie/polyorama.git?rev=fba3db87aaeb4a7a9f1bbfd0ba59fa0aac713b21#fba3db87aaeb4a7a9f1bbfd0ba59fa0aac713b21"
 dependencies = [
  "bytemuck",
  "parking_lot",
@@ -2137,6 +2139,7 @@ dependencies = [
 [[package]]
 name = "polyorama-runtime"
 version = "0.1.6"
+source = "git+https://github.com/robchristie/polyorama.git?rev=fba3db87aaeb4a7a9f1bbfd0ba59fa0aac713b21#fba3db87aaeb4a7a9f1bbfd0ba59fa0aac713b21"
 dependencies = [
  "crossbeam-channel",
  "lz4_flex",
@@ -2150,6 +2153,7 @@ dependencies = [
 [[package]]
 name = "polyorama-ui-egui"
 version = "0.1.6"
+source = "git+https://github.com/robchristie/polyorama.git?rev=fba3db87aaeb4a7a9f1bbfd0ba59fa0aac713b21#fba3db87aaeb4a7a9f1bbfd0ba59fa0aac713b21"
 dependencies = [
  "egui",
  "egui-wgpu",

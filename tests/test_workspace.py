@@ -14,8 +14,7 @@ from unittest.mock import patch
 SPEC = importlib.util.spec_from_file_location('pagefold_server', Path(__file__).resolve().parents[1] / 'tools/server.py')
 server = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(server)
-SCRATCH = Path(__file__).resolve().parents[1] / '.runtime-scratch'
-SUPPLIED = Path('/nvme/development/pagefold-supervision-20260909-a/knowledge')
+SUPPLIED = Path(__file__).resolve().parent / 'fixtures/knowledge'
 
 
 def inventory(root):
@@ -25,7 +24,7 @@ def inventory(root):
 
 class WorkspaceTests(unittest.TestCase):
     def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix='pagefold-test-', dir=SCRATCH)
+        self.temp = tempfile.TemporaryDirectory(prefix='pagefold-test-')
         self.base = Path(self.temp.name)
         self.root = self.base / 'knowledge'
         self.state = self.base / 'state'

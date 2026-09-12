@@ -12,8 +12,8 @@ egui = "=0.36.1"
 egui_commonmark = { version = "=0.25.0", default-features = false, features = ["pulldown_cmark"] }
 egui_extras = { version = "=0.36.1", default-features = false, features = ["image"] }
 image = { version = "0.25", default-features = false, features = ["png", "jpeg", "gif", "webp"] }
-polyorama-core = { path = "../polyorama/crates/polyorama-core" }
-polyorama-ui-egui = { path = "../polyorama/crates/polyorama-ui-egui" }
+polyorama-core = { git = "https://github.com/robchristie/polyorama.git", rev = "fba3db87aaeb4a7a9f1bbfd0ba59fa0aac713b21" }
+polyorama-ui-egui = { git = "https://github.com/robchristie/polyorama.git", rev = "fba3db87aaeb4a7a9f1bbfd0ba59fa0aac713b21" }
 serde_json = "1"
 serde = { version = "1", features = ["derive"] }
 ehttp = { version = "0.5", default-features = false }
