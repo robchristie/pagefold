@@ -98,12 +98,16 @@ pub fn prepare(page: &str, source: &str, images: &BTreeMap<String, String>) -> S
 enum Action {
     Open,
     Refresh,
+    Back,
+    Forward,
 }
 impl design::ActionKey for Action {
     fn stable_id(self) -> &'static str {
         match self {
             Self::Open => "pagefold.open",
             Self::Refresh => "pagefold.refresh",
+            Self::Back => "pagefold.back",
+            Self::Forward => "pagefold.forward",
         }
     }
     fn specification(self) -> design::ActionSpec<Self> {
@@ -112,10 +116,14 @@ impl design::ActionKey for Action {
             label: match self {
                 Self::Open => "Open directory",
                 Self::Refresh => "Refresh / rebuild",
+                Self::Back => "Back",
+                Self::Forward => "Forward",
             },
             description: match self {
                 Self::Open => "Read a directory and build a separate search index",
                 Self::Refresh => "Reread all pages and attachments and rebuild the search index",
+                Self::Back => "Read the previous page in this directory’s history",
+                Self::Forward => "Read the next page in this directory’s history",
             },
             compact_label: None,
             shortcut: None,
@@ -130,6 +138,9 @@ pub struct Pagefold {
     snapshot: Snapshot,
     directory: String,
     page: String,
+    // Paths only: page bodies always come from the current snapshot.
+    history: Vec<String>,
+    history_cursor: usize,
     query: String,
     status: String,
     snapshot_stale: bool,
@@ -197,6 +208,8 @@ impl Pagefold {
             snapshot: Snapshot::default(),
             directory: String::new(),
             page: String::new(),
+            history: Vec::new(),
+            history_cursor: 0,
             query: String::new(),
             status: "Enter the absolute path of a Markdown directory to begin.".into(),
             snapshot_stale: false,
@@ -281,6 +294,8 @@ impl Pagefold {
         self.cache = CommonMarkCache::default();
         if !same_root {
             self.page.clear();
+            self.history.clear();
+            self.history_cursor = 0;
         }
         if self.page.is_empty() {
             self.page = self
@@ -296,10 +311,47 @@ impl Pagefold {
             self.snapshot.pages.len(),
             self.snapshot.warnings.len()
         );
-        self.open_page(self.page.clone());
+        if self.history.is_empty() && self.snapshot.pages.contains_key(&self.page) {
+            self.history.push(self.page.clone());
+        }
+        self.display_page(self.page.clone());
     }
 
     fn open_page(&mut self, path: String) {
+        if !self.snapshot.pages.contains_key(&path) {
+            return;
+        }
+        if self.history.get(self.history_cursor) != Some(&path) {
+            if !self.history.is_empty() {
+                self.history.truncate(self.history_cursor + 1);
+            }
+            self.history.push(path.clone());
+            self.history_cursor = self.history.len() - 1;
+        }
+        self.display_page(path);
+    }
+
+    fn can_back(&self) -> bool {
+        !self.history.is_empty() && self.history_cursor > 0
+    }
+
+    fn can_forward(&self) -> bool {
+        self.history_cursor + 1 < self.history.len()
+    }
+
+    fn traverse(&mut self, forward: bool) {
+        if forward && self.can_forward() {
+            self.history_cursor += 1;
+        } else if !forward && self.can_back() {
+            self.history_cursor -= 1;
+        } else {
+            return;
+        }
+        self.display_page(self.history[self.history_cursor].clone());
+        self.status = "Read-only snapshot · use Refresh after external changes".into();
+    }
+
+    fn display_page(&mut self, path: String) {
         self.page = path;
         self.source = self.snapshot.pages.get(&self.page)
             .map(|s| prepare(&self.page, s, &self.image_uris))
@@ -398,11 +450,13 @@ impl eframe::App for Pagefold {
                 );
                 observe(&mut nodes, "directory", "Knowledge directory", &response);
                 ui.horizontal_wrapped(|ui| {
-                    for key in [Action::Open, Action::Refresh] {
+                    for key in [Action::Open, Action::Refresh, Action::Back, Action::Forward] {
                         let enabled = self.pending.is_none()
                             && match key {
                                 Action::Open => !self.directory.is_empty(),
                                 Action::Refresh => !self.snapshot.root.is_empty(),
+                                Action::Back => self.can_back(),
+                                Action::Forward => self.can_forward(),
                             };
                         let response = design::action_button(
                             ui,
@@ -413,7 +467,11 @@ impl eframe::App for Pagefold {
                                 } else {
                                     design::Availability::Disabled {
                                     reason:
-                                        "Enter a directory, or wait for the current read to finish"
+                                        match key {
+                                            Action::Back => "No previous page, or a read is in progress",
+                                            Action::Forward => "No next page, or a read is in progress",
+                                            _ => "Enter a directory, or wait for the current read to finish",
+                                        }
                                             .into(),
                                 }
                                 },
@@ -446,11 +504,12 @@ impl eframe::App for Pagefold {
                 );
             });
         if let Some(action) = action {
-            let directory = match action {
-                Action::Open => self.directory.clone(),
-                Action::Refresh => self.snapshot.root.clone(),
-            };
-            self.request(directory, &ctx);
+            match action {
+                Action::Open => self.request(self.directory.clone(), &ctx),
+                Action::Refresh => self.request(self.snapshot.root.clone(), &ctx),
+                Action::Back => self.traverse(false),
+                Action::Forward => self.traverse(true),
+            }
         }
         egui::Panel::top("page-browser")
             .resizable(false)
@@ -555,6 +614,7 @@ impl eframe::App for Pagefold {
             "page":self.page, "root":self.snapshot.root, "generation":self.snapshot.generation,
             "status":self.visible_status(), "snapshot_stale":self.snapshot_stale,
             "query":self.query, "pending":self.pending.is_some(),
+            "can_back":self.can_back(), "can_forward":self.can_forward(),
             "nodes":nodes, "text_coverage":coverage, "text_layouts":text_layouts,
             "limitations":["Reader and native label layout are unmeasured", "Text inputs have no framework coverage category", "Browser AccessKit adapter unavailable"],
         }).to_string());
@@ -584,12 +644,163 @@ pub async fn start(canvas: web_sys::HtmlCanvasElement) -> Result<(), JsValue> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    fn fixture_app() -> Pagefold {
+        Pagefold {
+            snapshot: Snapshot::default(),
+            directory: String::new(),
+            page: String::new(),
+            history: Vec::new(),
+            history_cursor: 0,
+            query: String::new(),
+            status: String::new(),
+            snapshot_stale: false,
+            source: String::new(),
+            image_uris: BTreeMap::new(),
+            cache: CommonMarkCache::default(),
+            pending: None,
+            endpoint: String::new(),
+        }
+    }
+
+    fn fixture_snapshot(root: &str) -> Snapshot {
+        let pages: BTreeMap<String, String> = ["A", "B", "C", "D"]
+            .into_iter()
+            .map(|name| (format!("{name}.md"), format!("# {name}\n\n{name} body")))
+            .collect();
+        Snapshot {
+            root: root.into(),
+            index: pages
+                .iter()
+                .map(|(p, s)| (p.clone(), s.to_lowercase()))
+                .collect(),
+            pages,
+            ..Snapshot::default()
+        }
+    }
+
+    #[test]
+    fn shared_history_traverses_without_duplicates_and_truncates_only_on_new_pages() {
+        let mut app = fixture_app();
+        app.traverse(false);
+        app.traverse(true);
+        assert!(app.history.is_empty());
+        app.accept(fixture_snapshot("/synthetic"), &egui::Context::default());
+        assert_eq!(app.page, "A.md");
+        assert!(!app.can_back());
+        assert!(!app.can_forward());
+        app.navigate("B.md");
+        app.navigate("C.md");
+        for (forward, expected) in [
+            (false, "B.md"),
+            (false, "A.md"),
+            (true, "B.md"),
+            (true, "C.md"),
+        ] {
+            app.traverse(forward);
+            assert_eq!(app.page, expected);
+            assert_eq!(app.source, app.snapshot.pages[expected]);
+        }
+        assert_eq!(app.history, ["A.md", "B.md", "C.md"]);
+        app.traverse(false);
+        // List and search both call open_page; same-page and fragment opens retain Forward.
+        app.open_page("B.md".into());
+        app.navigate("B.md#heading");
+        for invalid in [
+            "Missing.md",
+            "../outside.md",
+            "https://example.invalid",
+            "file.pdf",
+        ] {
+            app.navigate(invalid);
+        }
+        app.open_page("Missing.md".into());
+        assert_eq!(app.history, ["A.md", "B.md", "C.md"]);
+        assert!(app.can_forward());
+        app.query = "d body".into();
+        app.open_page("D.md".into());
+        assert_eq!(app.history, ["A.md", "B.md", "D.md"]);
+        assert!(!app.can_forward());
+        app.traverse(true);
+        assert_eq!(app.page, "D.md");
+    }
+
+    #[test]
+    fn refresh_resolves_history_against_new_snapshot_and_keeps_unavailable_entries() {
+        let mut app = fixture_app();
+        let ctx = egui::Context::default();
+        let mut snapshot = fixture_snapshot("/synthetic");
+        app.accept(snapshot.clone(), &ctx);
+        app.navigate("B.md");
+        app.navigate("C.md");
+        snapshot.pages.remove("B.md");
+        snapshot.index.remove("B.md");
+        snapshot
+            .pages
+            .insert("A.md".into(), "Updated A body".into());
+        app.accept(snapshot.clone(), &ctx);
+        assert_eq!(app.history, ["A.md", "B.md", "C.md"]);
+        app.traverse(false);
+        assert_eq!(app.page, "B.md");
+        assert!(app.source.contains("Page unavailable"));
+        assert!(app.source.contains("B.md"));
+        assert!(!app.source.contains("B body"));
+        app.accept(snapshot.clone(), &ctx);
+        assert_eq!(app.page, "B.md");
+        assert_eq!(app.history_cursor, 1);
+        app.traverse(false);
+        assert_eq!(app.source, "Updated A body");
+        app.traverse(true);
+        assert!(app.source.contains("Page unavailable"));
+        app.traverse(true);
+        assert_eq!(app.page, "C.md");
+        app.record_failure("synthetic scan failure");
+        for forward in [false, false, true, true] {
+            app.traverse(forward);
+            assert!(app.visible_status().contains("may be stale"));
+        }
+        app.open_page("A.md".into());
+        app.query = "c body".into();
+        app.open_page("C.md".into());
+        assert!(app.visible_status().contains("may be stale"));
+        assert_eq!(app.snapshot.pages, snapshot.pages);
+        app.accept(fixture_snapshot("/different"), &ctx);
+        assert_eq!(app.history, ["A.md"]);
+        assert!(!app.can_back());
+        assert!(!app.can_forward());
+        assert!(!app.snapshot_stale);
+    }
+
+    #[test]
+    fn empty_refresh_preserves_history_and_later_restoration_uses_new_body() {
+        let mut app = fixture_app();
+        let ctx = egui::Context::default();
+        app.accept(fixture_snapshot("/synthetic"), &ctx);
+        app.navigate("B.md");
+        app.accept(
+            Snapshot {
+                root: "/synthetic".into(),
+                ..Snapshot::default()
+            },
+            &ctx,
+        );
+        assert_eq!(app.history, ["A.md", "B.md"]);
+        assert!(app.source.contains("Page unavailable"));
+        app.traverse(false);
+        assert_eq!(app.page, "A.md");
+        assert!(app.source.contains("Page unavailable"));
+        app.accept(fixture_snapshot("/synthetic"), &ctx);
+        assert_eq!(app.source, "# A\n\nA body");
+        assert!(app.can_forward());
+    }
     #[test]
     fn stale_warning_survives_navigation_until_a_successful_snapshot() {
         let mut app = Pagefold {
             snapshot: Snapshot::default(),
             directory: String::new(),
             page: String::new(),
+            history: Vec::new(),
+            history_cursor: 0,
             query: String::new(),
             status: String::new(),
             snapshot_stale: false,
