@@ -47,7 +47,12 @@ Open **http://127.0.0.1:3817/**. Enter an absolute knowledge-directory path and
 choose **Open directory**. For the bundled synthetic example, enter the absolute path to
 `tests/fixtures/knowledge` in your checkout.
 Choose a page from the list, or type in **Search page text** to filter results.
-Click a result to read it. Scroll inside the reader; the controls remain visible.
+Click a result to read it. **Back** and **Forward** revisit pages opened through
+the list, search or internal links. Opening a different page after Back replaces
+the forward branch. Reopening the current page adds no duplicate. History stays
+in memory for the selected directory and resets when a different directory opens;
+it does not change browser history or persist across reloads.
+Scroll inside the reader; the controls remain visible.
 The path field accepts pasted directory paths; there is no operating-system
 folder chooser. Tab/Shift-Tab move focus and Enter/Space activate action buttons.
 
@@ -62,7 +67,9 @@ filesystem reader. It is not a multi-user server or remote hosting interface.
 **Refresh / rebuild** rereads the currently open directory, reloads images and
 replaces the complete search index. External additions, edits, renames and
 deletions become visible together when the new snapshot arrives. The open page
-is reread, or shows an unavailable state if removed. Search stays applied to
+is reread, or shows an unavailable state if removed. Refresh preserves page
+history; revisiting a removed page names its unavailable path, while Back and
+Forward still reach the remaining entries. Search stays applied to
 the new index. A failed refresh leaves the previous snapshot visible with an
 explicit stale warning that persists through navigation and search until a
 successful open/refresh. Changes during a scan are not an atomic filesystem
