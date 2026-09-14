@@ -10,7 +10,8 @@ Links resolve against the containing page. Dot segments are normalised; parent
 traversal is allowed only while it remains within the selected directory.
 Percent-encoded UTF-8 filenames are decoded once. Absolute paths, backslashes,
 control characters, URL schemes (including http, file, data and javascript)
-and query strings are blocked. Heading fragments open the containing page with
+and query strings are blocked. Encoded `%3F` denotes a literal filename question
+mark; a raw `?` starts an unsupported query. Heading fragments open the containing page with
 an explicit notice that heading scrolling is unsupported. Names containing
 colons, backslashes or control characters are unsupported and reported.
 Case follows the source filesystem.
@@ -52,6 +53,34 @@ second docking tree. It uses Polyorama Reading typography and action recipes.
 The Noto fallback extends the supported application font API without changing
 Polyorama. Source editing, semantic search, ingestion, synchronisation, graph
 visualisation and authoring tools are outside this milestone.
+
+## Page addresses
+
+Browser links use `/#workspace=<absolute-path>&page=<relative-page>` on the local
+service origin. Both values use UTF-8 percent encoding, decoded exactly once by
+the Pagefold browser address parser. `+` is literal, not a form-encoded space.
+Encode `%`, `&`, `=`, `?`, `#`, spaces and non-ASCII characters with ordinary
+`encodeURIComponent` or Python `quote(value, safe='')`; slashes may be encoded.
+The fragment is not sent as an HTTP path. The page must end in `.md` or
+`.markdown` (case-insensitive) and is looked up in the contained snapshot.
+
+The fragment is at most 16384 characters; decoded fields are each at most 4096
+JavaScript UTF-16 code units. Exactly one `workspace` and one `page` are required.
+Malformed percent encoding/UTF-8, extra/repeated fields, empty components, dot
+segments, absolute pages, colons, backslashes and control characters are rejected.
+Use an absolute workspace without a trailing slash. There is no second decode,
+root-escape normalisation or serving endpoint. Existing directory, symlink,
+regular-file and snapshot limits apply to all addressed pages.
+
+Page addresses are separate from relative Markdown links: the latter still
+resolve against their containing page and reject external URL schemes.
+Browser page-list, search and internal page navigation update the address;
+passage reveal and repeated current-page selection do not create entries.
+Browser and application traversal preserve the current search query. Opening a
+different workspace resets application page history, as before. Browser entries
+can still return to the named workspace. A reload/restart rereads the addressed
+page and starts new in-memory search/history state. The browser copy controls
+are ordinary DOM controls; native compilation does not qualify this browser UI.
 
 The browser publishes bounded current control rectangles and state through
 `window.pagefoldObservation()`. This is an observation, not a mutation API.

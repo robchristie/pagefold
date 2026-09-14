@@ -54,10 +54,47 @@ the corresponding passage; selecting the same result reveals it again.
 the list, search or internal links. Opening a different page after Back replaces
 the forward branch. Reopening the current page adds no duplicate. History stays
 in memory for the selected directory and resets when a different directory opens;
-it does not change browser history or persist across reloads.
+the browser address follows page navigation, and browser Back/Forward revisit
+the same pages. Search stays in the current session. Reload starts a new session
+at the addressed page; earlier in-memory page history does not persist.
 Scroll inside the reader; the controls remain visible.
 The path field accepts pasted directory paths; there is no operating-system
 folder chooser. Tab/Shift-Tab move focus and Enter/Space activate action buttons.
+
+### Page links (browser)
+
+Choose **Copy page link** above the reader. Success is confirmed; if clipboard
+access is unavailable or denied, a selected text field provides the complete
+link for manual copying with Ctrl+C or ⌘C. The link identifies the current page,
+without search text, passage highlight or scroll position.
+
+For example, a workspace `/home/me/Notes` and page `guides/Reading.md` use:
+
+```text
+http://127.0.0.1:3817/#workspace=%2Fhome%2Fme%2FNotes&page=guides%2FReading.md
+```
+
+An agent can construct a link using known absolute directory and relative page
+paths, independently of any browser state:
+
+```python
+from urllib.parse import quote
+link = ('http://127.0.0.1:3817/#workspace=' + quote('/home/me/Notes', safe='')
+        + '&page=' + quote('guides/日本 %?#.md', safe=''))
+```
+
+Open the link in a fresh tab, reload it, or reopen it after restarting the same
+local service. It reads the named workspace through the normal directory loader.
+Missing pages name the intended target; an unavailable workspace reports its
+path and allows another directory or a retry. It never substitutes a previously
+open workspace. Refresh checks current files and can recover a restored page.
+
+Links expose local path names. They work only for clients with access to the same
+service/filesystem, while the service origin and directory/page locations remain
+unchanged. Moving or renaming files breaks old links. This is local read-only
+access, not publication or a grant of access from another machine. There is no
+registry or knowledge-directory metadata. See the exact limits below in the
+[content contract](docs/content-contract.md#page-addresses).
 
 The native client uses the same local service: run `cargo run --locked` while
 the service runs. If changing the service port, set PAGEFOLD_ENDPOINT to

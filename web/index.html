@@ -1,4 +1,17 @@
 <!doctype html>
 <html lang="en-AU"><meta charset="utf-8"><title>Pagefold</title>
-<style>html,body{margin:0;width:100%;height:100%;overflow:hidden}canvas{width:100%;height:100%}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#11181d;color:#e4edf2;font:14px system-ui,sans-serif}
+body{display:flex;flex-direction:column}canvas{width:100%;height:100%;min-height:0;flex:1}
+#page-link-controls{padding:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;border-bottom:1px solid #4a5e6b}
+button,input{font:inherit}button{padding:6px 10px;background:#23343e;color:inherit;border:1px solid #6c899a;border-radius:4px;cursor:pointer}
+button:disabled{opacity:.5;cursor:default}button:focus-visible,input:focus-visible{outline:2px solid #55d9df;outline-offset:2px}
+#copy-status{overflow-wrap:anywhere}#manual-link{width:100%;min-width:0;box-sizing:border-box;background:#18232b;color:inherit;padding:6px;border:1px solid #6c899a}
+</style>
+<div id="page-link-controls" aria-label="Page link">
+<button id="copy-page-link" disabled>Copy page link</button>
+<span id="copy-status" role="status" aria-live="polite">Open a page to copy its link.</span>
+<input id="manual-link" aria-label="Page link — select and copy manually" readonly hidden>
+</div>
 <canvas id="reader" aria-label="Pagefold canvas reader"></canvas><script type="module" src="/app.js"></script></html>

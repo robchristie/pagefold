@@ -1,0 +1,1 @@
+{"pass":true,"cases":["special fresh URL","list address","browser Back","app Forward","reload","missing page","missing root","traversal rejection","workspace isolation"],"url":"http://127.0.0.1:3828/#workspace=%2Fnvme%2Fdevelopment%2Fpagefold-addressable-delivery-20260914%2Fworkspace%2Ftarget%2Fbokkie-tmp%2Froot-a&page=nested%2Fspace%20%E6%97%A5%E6%9C%AC%20%25%3F%23.md"}
