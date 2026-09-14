@@ -4,6 +4,10 @@ use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 use std::sync::{Arc, Mutex};
 
+#[cfg(feature = "passage-calibration")]
+#[path = "../calibration/search-passages/probe.rs"]
+mod passage_calibration;
+
 #[derive(Clone, Debug, Default, Deserialize, Serialize)]
 pub struct Snapshot {
     pub root: String,
@@ -636,7 +640,12 @@ pub async fn start(canvas: web_sys::HtmlCanvasElement) -> Result<(), JsValue> {
         .start(
             canvas,
             eframe::WebOptions::default(),
-            Box::new(|cc| Ok(Box::new(Pagefold::new(cc)))),
+            Box::new(|cc| {
+                #[cfg(feature = "passage-calibration")]
+                return Ok(Box::new(passage_calibration::Probe::new(cc)));
+                #[cfg(not(feature = "passage-calibration"))]
+                Ok(Box::new(Pagefold::new(cc)))
+            }),
         )
         .await
 }
