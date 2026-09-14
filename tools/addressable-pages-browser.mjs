@@ -92,7 +92,13 @@ try {
     await p.goto(url(other,special));await wait(special,other);o=await state('same page name cannot leak from other workspace');assert.equal(await p.evaluate(()=>pagefoldObservation().page_available),false);
     await p.goto(url(root,'escape.md'));await wait('escape.md');assert.equal(await p.evaluate(()=>pagefoldObservation().page_available),false);await state('symlink page excluded');
     const bad=['#workspace='+encodeURIComponent(root)+'&page=..%2FA.md','#workspace=%ZZ&page=A.md','#workspace='+encodeURIComponent(root)+'&page=%2Fetc%2Fpasswd.md','#workspace='+encodeURIComponent(root)+'&page=A.md&extra=x','#workspace='+encodeURIComponent(root)+'&page='+('x'.repeat(16400))+'.md'];
-    for(const target of bad) {await p.goto(origin+'/'+target);await p.waitForFunction(()=>pagefoldObservation().status.includes('Invalid page link'));assert.equal(await p.evaluate(()=>pagefoldObservation().root),'');}
+    for(const target of bad) {
+        const serial=await p.evaluate(()=>pagefoldObservation().address_serial);
+        await p.goto(origin+'/'+target);
+        await p.waitForFunction(serial=>pagefoldObservation().address_serial>serial&&pagefoldObservation().status.includes('Invalid page link'),serial);
+        assert.equal(await p.evaluate(()=>pagefoldObservation().root),'');
+        if(target.length>16384) assert((await p.evaluate(()=>pagefoldObservation().status)).includes('exceeds 16384'));
+    }
     await state('malformed oversized and traversal targets rejected');
     await p.goto(url(root,special));await wait(special);
     // Collect Lantern against the exact candidate with collection before reload.
