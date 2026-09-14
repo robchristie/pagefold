@@ -163,10 +163,10 @@ pub fn target(source: &str, query: &str) -> Option<Target> {
         }
     }
     // Large compound blocks use the source fallback rather than an imprecise reveal.
-    if block
-        .as_ref()
-        .is_some_and(|r| source[r.clone()].chars().count() > 2000)
-    {
+    if block.as_ref().is_some_and(|r| {
+        let line_start = source[..r.start].rfind('\n').map_or(0, |n| n + 1);
+        source[r.clone()].chars().count() > 2000 || !source[line_start..r.start].trim().is_empty()
+    }) {
         block = None;
     }
     Some(Target {
@@ -193,7 +193,13 @@ pub fn prepared(
         placeholder.push('_');
     }
     let mut marked = source.to_owned();
-    marked.insert_str(block.start, &format!("\n\n{placeholder}\n\n"));
+    // Parser ranges can begin after indentation (notably indented code).
+    // Keep that prefix attached to its original line when inserting a block.
+    let line_start = source[..block.start].rfind('\n').map_or(0, |n| n + 1);
+    if !source[line_start..block.start].trim().is_empty() {
+        return crate::prepare(page, source, images);
+    }
+    marked.insert_str(line_start, &format!("\n\n{placeholder}\n\n"));
     crate::prepare(page, &marked, images).replacen(&placeholder, MARKER, 1)
 }
 
@@ -276,6 +282,34 @@ mod tests {
 #[cfg(test)]
 mod limits {
     use super::*;
+    #[test]
+    fn markers_preserve_indented_and_fenced_code() {
+        for source in [
+            "    **Needle**\n    second\n",
+            "   ```\n   Needle\n   ```\n",
+        ] {
+            let code_text = |text: &str| {
+                Parser::new_ext(text, options())
+                    .filter_map(|e| match e {
+                        Event::Text(t) => Some(t.into_string()),
+                        _ => None,
+                    })
+                    .collect::<Vec<_>>()
+            };
+            let marked = prepared(
+                "Code.md",
+                source,
+                &BTreeMap::new(),
+                &target(source, "Needle").unwrap(),
+            );
+            assert_eq!(code_text(&marked), code_text(source));
+            assert!(
+                Parser::new_ext(&marked, options())
+                    .any(|e| matches!(e, Event::Start(pulldown_cmark::Tag::CodeBlock(_))))
+            );
+            assert!(marked.contains(MARKER));
+        }
+    }
     #[test]
     fn rewritten_images_and_large_blocks_are_honest() {
         assert!(

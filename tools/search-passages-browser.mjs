@@ -8,11 +8,12 @@ const out = 'target/search-passages';
 const root = process.cwd()+'/'+out+'/knowledge';
 const inventory = () => Object.fromEntries(readdirSync(root).sort().map(p => [p,createHash('sha256').update(readFileSync(root+'/'+p)).digest('hex')]));
 mkdirSync(root,{recursive:true});
-const original = readFileSync('calibration/search-passages/fixture.md','utf8')+'\n\n![AltNeedle](gradient.png)\n';
+const original = readFileSync('calibration/search-passages/fixture.md','utf8')+'\n\n![AltNeedle](gradient.png)\n\n    **IndentNeedle**\n    second line\n';
 writeFileSync(root+'/Fixture.md',original);
 writeFileSync(root+'/PathOnly.md','# Other page\n\nOrdinary content.');
 writeFileSync(root+'/ThirdOnly.md','# Third page\n\nDifferent content.');
 copyFileSync('tests/fixtures/knowledge/attachments/gradient.png',root+'/gradient.png');
+for(let i=0;i<24;i++) writeFileSync(root+'/Row'+String(i).padStart(2,'0')+'.md','# Result '+i+'\n\nRowNeedle with a bounded preview for scrolling rows.');
 const before = inventory();
 const browser = await chromium.connectOverCDP('http://127.0.0.1:9318');
 const page = browser.contexts()[0].pages().find(p=>p.url().startsWith('http://127.0.0.1:3828/'));
@@ -53,7 +54,7 @@ try {
  await page.waitForFunction(()=>!window.pagefoldObservation().pending && window.pagefoldObservation().root!=='');
  for (const width of [1100,390]) {
   await page.setViewportSize({width,height:900});
-  for (const query of ['Heading Beacon','Alpha','List Beacon','Linklabel','Reference','CodeBeacon','TableBeacon','İSTANBUL','日本語','eCHO','\u0307','AltNeedle','invisible-destination','ReferenceTarget','**','PathOnly','DistantBeacon']) {
+  for (const query of ['Heading Beacon','Alpha','List Beacon','Linklabel','Reference','CodeBeacon','TableBeacon','İSTANBUL','日本語','eCHO','\u0307','AltNeedle','IndentNeedle','invisible-destination','ReferenceTarget','**','PathOnly','DistantBeacon']) {
    let s=await fill('search',query); assert.equal(s.query,query); assert.equal(s.results.length,1);
    const path=query==='PathOnly'?'PathOnly.md':'Fixture.md';
    s=await click('page:'+path);
@@ -66,6 +67,14 @@ try {
    if(query==='DistantBeacon') {assert(s.nodes.find(n=>n.id==='reader').scroll_y>1500);assert.deepEqual(s.target.matched,{start:6807,end:6820});}
    if(['CodeBeacon','TableBeacon','İSTANBUL','invisible-destination','ReferenceTarget','PathOnly','DistantBeacon'].includes(query)) capture(width+'-'+query.replace('İSTANBUL','unicode'));
   }
+  let rows=await fill('search','RowNeedle'); assert.equal(rows.result_count,24);
+  const initial=rows.nodes.filter(n=>n.id.startsWith('page:Row')).map(n=>n.id);
+  await page.mouse.move(200,230); await page.mouse.wheel(0,255);
+  rows=await state(); observations.push({input:'physical pointer wheel',state:rows});
+  const scrolled=rows.nodes.filter(n=>n.id.startsWith('page:Row')).map(n=>n.id);
+  assert.notDeepEqual(scrolled,initial);
+  capture(width+'-multiple-results');
+  await fill('search','DistantBeacon'); await click('page:Fixture.md');
   writeFileSync(out+'/'+width+'-layout.json',JSON.stringify(lantern('layout',['--container-selector','body']),null,2));
  }
  let s=await state(); const history=s.history;

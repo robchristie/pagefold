@@ -604,7 +604,7 @@ impl eframe::App for Pagefold {
                     self.update_results();
                 }
                 ui.label(format!("{} matching pages", self.results.len()));
-                let row_height = if self.query.is_empty() { 26.0 } else { 74.0 };
+                let row_height = if self.query.is_empty() { 28.0 } else { 80.0 };
                 egui::ScrollArea::vertical()
                     .id_salt("browse")
                     .max_height(150.0)
@@ -612,6 +612,7 @@ impl eframe::App for Pagefold {
                         for index in range {
                             let (path, excerpt) = self.results[index].clone();
                             ui.push_id(&path, |ui| {
+                                ui.set_min_height(row_height);
                                 let response = ui
                                     .add_sized(
                                         [ui.available_width(), 24.0],
