@@ -52,6 +52,7 @@ try {
         observations.push({name,url:o.url,root:o.root,page:o.page,history:o.history,cursor:o.history_cursor,query:o.query,status:o.status,stale:o.snapshot_stale,target:o.target,marker:o.marker_rect,length:o.length});return o;
     }
     async function click(id) {
+        await p.waitForFunction(id=>pagefoldObservation().nodes.some(n=>n.id===id&&n.enabled!==false),id);
         const n=await p.evaluate(id=>pagefoldObservation().nodes.find(n=>n.id===id),id);assert(n?.enabled!==false,id+' disabled');
         const canvas=await p.locator('canvas').boundingBox();
         await p.mouse.click(canvas.x+n.rect[0]+n.rect[2]/2,canvas.y+n.rect[1]+n.rect[3]/2);
@@ -86,6 +87,18 @@ try {
     await click('pagefold.forward');await wait(special);assert.equal(p.url(),url(root,special));await state('mixed app and browser traversal across workspace reset');
     await p.reload();await wait(special);await p.goBack();await wait('A.md');
     await click('pagefold.back');await wait(special);assert.equal(p.url(),url(root,special));await state('app traversal into browser entries predating reload');
+    await p.goto(url(root,'A.md'));await p.reload();await wait('A.md');
+    await click('page:'+special);await wait(special);await click('page:C.md');await wait('C.md');
+    await click('directory');await p.keyboard.press('Control+A');await p.keyboard.insertText(other);await click('pagefold.open');await wait('B.md',other);
+    await p.goBack();await wait('C.md');await p.goBack();await wait(special);
+    await click('page:A.md');await wait('A.md');await click('pagefold.back');await wait(special);
+    await click('pagefold.back');await wait('C.md');assert.equal(p.url(),url(root,'C.md'));await state('discarded browser forward branch cannot redirect app history');
+    await p.goto(url(root,'A.md'));await p.reload();await wait('A.md');
+    await click('page:'+special);await wait(special);await click('page:C.md');await wait('C.md');
+    const malformedSerial=await p.evaluate(()=>pagefoldObservation().address_serial);
+    await p.goto(origin+'/#bad');await p.waitForFunction(s=>pagefoldObservation().address_serial>s&&pagefoldObservation().status.includes('Invalid page link'),malformedSerial);
+    await click('directory');await p.keyboard.press('Control+A');await p.keyboard.insertText(root);await click('pagefold.open');await wait('A.md');
+    await p.evaluate(()=>history.go(-2));await wait('C.md');await click('pagefold.back');await wait('A.md');assert.equal(p.url(),url(root,'A.md'));await state('malformed entry recovery cannot corrupt browser offsets');
     await p.goto(url(root,special));await wait(special);
     const generation=await p.evaluate(()=>pagefoldObservation().generation);
     await writeFile(root+'/'+special,'# Fresh external edit\n\nneedle changed body\n');

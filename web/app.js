@@ -71,18 +71,18 @@ copyButton.addEventListener('click', async () => {
 function loadAddress() {
     waiting = true;
     serial++;
+    const state = history.state;
+    if (state?.pagefold === 1 && state.timeline === timeline) {
+        position = state.position;
+    } else {
+        // An untagged browser entry has no known offset. Start a new mapping;
+        // application history remains useful, but must not guess a traversal.
+        timeline = crypto.randomUUID();
+        position = 0;
+        entries = [];
+    }
     try {
         const target = parseAddress(location.hash);
-        const state = history.state;
-        if (state?.pagefold === 1 && state.timeline === timeline) {
-            position = state.position;
-        } else {
-            // An untagged browser entry has no known offset. Start a new mapping;
-            // application history remains useful, but must not guess a traversal.
-            timeline = crypto.randomUUID();
-            position = 0;
-            entries = [];
-        }
         address(target.workspace, target.page, state?.session === session ? state.cursor : undefined, serial, '');
     } catch (error) {
         address('', '', undefined, serial, `Invalid page link: ${error.message}. Choose a directory to continue.`);
@@ -121,6 +121,9 @@ function sync() {
                 serial++;
                 history.go(destination - position);
             } else {
+                // pushState discards the physical forward branch, including
+                // entries still retained by the application's page history.
+                entries = entries.map(entry => entry.position > position ? {page:entry.page} : entry);
                 position++;
                 history.pushState(entryState(o), '', fragment(o.root, o.page));
                 remember(o);
