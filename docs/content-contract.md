@@ -60,3 +60,16 @@ It is not the framework gallery hook or an AccessKit tree. Eframe's browser
 AccessKit adapter is unavailable; no browser screen-reader support is claimed.
 Text-input and document-reader internal label geometry are unmeasured, and no
 native operating-system assistive-technology workflow has been qualified here.
+
+Search excerpts show at most 24 source characters on each side and 48 matched
+characters, with ellipses for omitted text. Whitespace is displayed as spaces.
+Matching retains whole-string lowercase semantics, including Unicode expansion;
+a partial lowercase expansion highlights the original character.
+
+The reader marks the first match's enclosing top-level passage rather than
+highlighting individual rendered words. Lists, tables and code blocks are marked
+as a unit. Markdown syntax, link destinations, image alt text and transformed
+text may not appear as written; the interface explains this and retains the
+highlighted source excerpt. Definitions without a rendered block and blocks over
+2,000 source characters use the source excerpt alone, without an invented target.
+Reference resolution and escaped user HTML still use the complete document.
