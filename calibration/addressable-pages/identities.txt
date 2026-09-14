@@ -1,0 +1,4 @@
+ba0ca412015fbe452941c6f1a8f9d9c6b8ee9f4bc3418d5d4b71bda161932912  src/lib.rs
+c626628804aabca4599c2a2f491bda5044ef6306632c4a008ccb48907a94c150  web/app.js
+5abedd09114fa02bf4eaa2bf61e4bc1fba8f27d1044e0a9cbc76dea9ad5212eb  web/pkg/pagefold_probe_bg.wasm
+c2db957ba94fb4715549cc91d4d745a11e17c67561320d20cd390263def3503f  target/bokkie-tmp/calibration.png

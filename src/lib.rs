@@ -20,14 +20,17 @@ pub struct Snapshot {
     pub warnings: Vec<String>,
 }
 
-/// All URL interpretation happens here, before lookup in the contained snapshot.
+/// Relative Markdown links resolve here before lookup in the contained snapshot.
 pub fn resolve(page: &str, link: &str) -> Result<String, String> {
     let path = link.split('#').next().unwrap_or_default();
+    if path.contains('?') {
+        return Err("Blocked query string in link".into());
+    }
     let decoded = percent_encoding::percent_decode_str(path)
         .decode_utf8()
         .map_err(|_| "Invalid UTF-8 in link")?;
     if decoded.starts_with('/')
-        || decoded.contains([':', '\\', '?'])
+        || decoded.contains([':', '\\'])
         || decoded.chars().any(char::is_control)
     {
         return Err("Blocked absolute, external or unsafe path".into());
@@ -139,6 +142,7 @@ impl design::ActionKey for Action {
 mod search;
 
 type Pending = Arc<Mutex<Option<Result<Snapshot, String>>>>;
+type AddressRequest = (String, String, Option<usize>, u32, String);
 
 pub struct Pagefold {
     snapshot: Snapshot,
@@ -161,6 +165,8 @@ pub struct Pagefold {
     cache: CommonMarkCache,
     pending: Option<Pending>,
     endpoint: String,
+    address_target: Option<(String, String)>,
+    address_serial: u32,
 }
 
 fn font_bytes() -> Vec<u8> {
@@ -235,12 +241,56 @@ impl Pagefold {
             image_uris: BTreeMap::new(),
             cache: CommonMarkCache::default(),
             pending: None,
+            address_target: None,
+            address_serial: 0,
             endpoint: if cfg!(target_arch = "wasm32") {
                 "/api/snapshot".into()
             } else {
                 std::env::var("PAGEFOLD_ENDPOINT")
                     .unwrap_or("http://127.0.0.1:3817/api/snapshot".into())
             },
+        }
+    }
+
+    fn apply_address(&mut self, request: AddressRequest, ctx: &egui::Context) {
+        let (directory, page, cursor, serial, error) = request;
+        self.address_serial = serial;
+        // A URL request supersedes any in-flight open/refresh, including an
+        // ordinary directory open whose response has not arrived yet.
+        self.pending = None;
+        if !error.is_empty() || directory.is_empty() || directory != self.snapshot.root {
+            self.selected_query = None;
+            self.pending = None;
+            self.snapshot = Snapshot::default();
+            self.history.clear();
+            self.history_cursor = 0;
+            self.page.clear();
+            self.source.clear();
+            self.target = None;
+            self.reveal = false;
+            self.passage_notice.clear();
+            self.results.clear();
+            self.directory = directory.clone();
+            self.address_target = Some((directory.clone(), page));
+            self.snapshot_stale = false;
+            if !error.is_empty() {
+                self.status = error;
+            } else if directory.is_empty() {
+                self.status = "Enter the absolute path of a Markdown directory to begin.".into();
+            } else {
+                self.request(directory, ctx);
+            }
+        } else {
+            self.address_target = None;
+            if let Some(cursor) = cursor.filter(|i| self.history.get(*i) == Some(&page)) {
+                self.history_cursor = cursor;
+            } else if self.history.get(self.history_cursor) != Some(&page) {
+                self.history
+                    .truncate(self.history_cursor + usize::from(!self.history.is_empty()));
+                self.history.push(page.clone());
+                self.history_cursor = self.history.len() - 1;
+            }
+            self.display_page(page);
         }
     }
 
@@ -316,6 +366,9 @@ impl Pagefold {
             self.history.clear();
             self.history_cursor = 0;
         }
+        if let Some((_, target)) = self.address_target.take() {
+            self.page = target;
+        }
         if self.page.is_empty() {
             self.page = self
                 .snapshot
@@ -330,7 +383,7 @@ impl Pagefold {
             self.snapshot.pages.len(),
             self.snapshot.warnings.len()
         );
-        if self.history.is_empty() && self.snapshot.pages.contains_key(&self.page) {
+        if self.history.is_empty() && !self.page.is_empty() {
             self.history.push(self.page.clone());
         }
         self.update_results();
@@ -478,6 +531,8 @@ impl Pagefold {
 }
 
 thread_local! {
+    static ADDRESS: std::cell::RefCell<Option<AddressRequest>> = const { std::cell::RefCell::new(None) };
+    static ADDRESS_CONTEXT: std::cell::RefCell<Option<egui::Context>> = const { std::cell::RefCell::new(None) };
     static OBSERVATION: std::cell::RefCell<String> = const { std::cell::RefCell::new(String::new()) };
 }
 
@@ -491,12 +546,16 @@ fn observe(nodes: &mut Vec<serde_json::Value>, id: &str, label: &str, response: 
 impl eframe::App for Pagefold {
     fn ui(&mut self, root: &mut egui::Ui, _: &mut eframe::Frame) {
         let ctx = root.ctx().clone();
+        ADDRESS_CONTEXT.with(|c| *c.borrow_mut() = Some(ctx.clone()));
+        if let Some(request) = ADDRESS.with(|a| a.borrow_mut().take()) {
+            self.apply_address(request, &ctx);
+        }
         let completed = self.pending.as_ref().and_then(|p| p.lock().unwrap().take());
         if let Some(result) = completed {
             self.pending = None;
             match result {
                 Ok(snapshot) => self.accept(snapshot, &ctx),
-                Err(error) => self.record_failure(&error),
+                Err(error) => self.record_failure(&format!("Unable to read workspace {}: {error}. Choose another directory or retry Open directory.", self.directory)),
             }
         }
         let mut nodes = Vec::new();
@@ -579,7 +638,16 @@ impl eframe::App for Pagefold {
             });
         if let Some(action) = action {
             match action {
-                Action::Open => self.request(self.directory.clone(), &ctx),
+                Action::Open => {
+                    if self
+                        .address_target
+                        .as_ref()
+                        .is_some_and(|(root, _)| root != &self.directory)
+                    {
+                        self.address_target = None;
+                    }
+                    self.request(self.directory.clone(), &ctx);
+                }
                 Action::Refresh => self.request(self.snapshot.root.clone(), &ctx),
                 Action::Back => self.traverse(false),
                 Action::Forward => self.traverse(true),
@@ -714,7 +782,7 @@ impl eframe::App for Pagefold {
         }
         let coverage = design::text_audit_coverage(&ctx, &text_layouts);
         OBSERVATION.with(|o| *o.borrow_mut() = serde_json::json!({
-            "page":self.page, "root":self.snapshot.root, "generation":self.snapshot.generation,
+            "address_serial":self.address_serial, "page_available":self.snapshot.pages.contains_key(&self.page), "page":self.page, "root":self.snapshot.root, "generation":self.snapshot.generation,
             "status":self.visible_status(), "snapshot_stale":self.snapshot_stale,
             "query":self.query, "pending":self.pending.is_some(),
             "result_count":self.results.len(), "results":self.results.iter().take(32).collect::<Vec<_>>(), "target":self.target, "passage_notice":self.passage_notice,
@@ -729,6 +797,16 @@ impl eframe::App for Pagefold {
 
 #[cfg(target_arch = "wasm32")]
 use wasm_bindgen::prelude::*;
+#[cfg(target_arch = "wasm32")]
+#[wasm_bindgen]
+pub fn address(directory: String, page: String, cursor: Option<usize>, serial: u32, error: String) {
+    ADDRESS.with(|a| *a.borrow_mut() = Some((directory, page, cursor, serial, error)));
+    ADDRESS_CONTEXT.with(|c| {
+        if let Some(ctx) = c.borrow().as_ref() {
+            ctx.request_repaint();
+        }
+    });
+}
 #[cfg(target_arch = "wasm32")]
 #[wasm_bindgen]
 pub fn observation() -> String {
@@ -776,6 +854,8 @@ mod tests {
             image_uris: BTreeMap::new(),
             cache: CommonMarkCache::default(),
             pending: None,
+            address_target: None,
+            address_serial: 0,
             endpoint: String::new(),
         }
     }
@@ -973,6 +1053,8 @@ mod tests {
             image_uris: BTreeMap::new(),
             cache: CommonMarkCache::default(),
             pending: None,
+            address_target: None,
+            address_serial: 0,
             endpoint: String::new(),
         };
         app.record_failure("directory unavailable");
@@ -1010,6 +1092,11 @@ mod tests {
     #[test]
     fn paths_and_encoded_urls_are_contained() {
         assert_eq!(
+            resolve("Home.md", "nested/space%20日本%20%25%3F%23.md").unwrap(),
+            "nested/space 日本 %?#.md"
+        );
+        assert!(resolve("Home.md", "A.md?query").is_err());
+        assert_eq!(
             resolve("guides/Reading.md", "../Home.md").unwrap(),
             "Home.md"
         );
@@ -1028,6 +1115,51 @@ mod tests {
         ] {
             assert!(resolve("Home.md", link).is_err(), "{link}");
         }
+    }
+    #[test]
+    fn addressed_missing_page_never_falls_back_and_refresh_can_restore_it() {
+        let mut app = fixture_app();
+        let ctx = egui::Context::default();
+        app.accept(fixture_snapshot("/old"), &ctx);
+        app.address_target = Some(("/new".into(), "Missing.md".into()));
+        app.accept(fixture_snapshot("/new"), &ctx);
+        assert_eq!(app.page, "Missing.md");
+        assert_eq!(app.history, ["Missing.md"]);
+        assert!(app.source.contains("Page unavailable"));
+        let mut restored = fixture_snapshot("/new");
+        restored
+            .pages
+            .insert("Missing.md".into(), "Restored body".into());
+        app.accept(restored, &ctx);
+        assert_eq!(app.source, "Restored body");
+        assert_eq!(app.history, ["Missing.md"]);
+    }
+    #[test]
+    fn address_replacement_clears_old_passage_and_supersedes_pending_reads() {
+        let mut app = fixture_app();
+        let ctx = egui::Context::default();
+        app.accept(fixture_snapshot("/old"), &ctx);
+        app.query = "body".into();
+        app.select_result("A.md".into());
+        assert!(app.target.is_some());
+        app.pending = Some(Arc::new(Mutex::new(Some(Ok(fixture_snapshot("/wrong"))))));
+        app.apply_address(
+            (
+                String::new(),
+                String::new(),
+                None,
+                7,
+                "Invalid page link".into(),
+            ),
+            &ctx,
+        );
+        assert!(app.target.is_none());
+        assert!(!app.reveal);
+        assert!(app.snapshot.root.is_empty());
+        assert!(app.pending.is_none());
+        assert!(app.page.is_empty());
+        assert_eq!(app.address_serial, 7);
+        assert_eq!(app.query, "body");
     }
     #[test]
     fn images_and_html_cannot_escape_the_renderer() {
