@@ -136,6 +136,8 @@ impl design::ActionKey for Action {
     }
 }
 
+mod search;
+
 type Pending = Arc<Mutex<Option<Result<Snapshot, String>>>>;
 
 pub struct Pagefold {
@@ -146,6 +148,12 @@ pub struct Pagefold {
     history: Vec<String>,
     history_cursor: usize,
     query: String,
+    cached_query: String,
+    results: Vec<(String, Option<search::Excerpt>)>,
+    selected_query: Option<String>,
+    target: Option<search::Target>,
+    reveal: bool,
+    passage_notice: String,
     status: String,
     snapshot_stale: bool,
     source: String,
@@ -215,6 +223,12 @@ impl Pagefold {
             history: Vec::new(),
             history_cursor: 0,
             query: String::new(),
+            cached_query: String::new(),
+            results: Vec::new(),
+            selected_query: None,
+            target: None,
+            reveal: false,
+            passage_notice: String::new(),
             status: "Enter the absolute path of a Markdown directory to begin.".into(),
             snapshot_stale: false,
             source: String::new(),
@@ -297,6 +311,7 @@ impl Pagefold {
         self.directory = self.snapshot.root.clone();
         self.cache = CommonMarkCache::default();
         if !same_root {
+            self.selected_query = None;
             self.page.clear();
             self.history.clear();
             self.history_cursor = 0;
@@ -318,6 +333,7 @@ impl Pagefold {
         if self.history.is_empty() && self.snapshot.pages.contains_key(&self.page) {
             self.history.push(self.page.clone());
         }
+        self.update_results();
         self.display_page(self.page.clone());
     }
 
@@ -355,15 +371,65 @@ impl Pagefold {
         self.status = "Read-only snapshot · use Refresh after external changes".into();
     }
 
+    fn update_results(&mut self) {
+        self.cached_query = self.query.clone();
+        let query = self.query.to_lowercase();
+        self.results = self
+            .snapshot
+            .index
+            .iter()
+            .filter(|(path, text)| {
+                query.is_empty() || text.contains(&query) || path.to_lowercase().contains(&query)
+            })
+            .map(|(path, _)| {
+                let excerpt = self.snapshot.pages.get(path).and_then(|source| {
+                    search::first_match(source, &query).map(|range| search::excerpt(source, range))
+                });
+                (path.clone(), excerpt)
+            })
+            .collect();
+    }
+
+    fn select_result(&mut self, path: String) {
+        self.selected_query = if self.query.is_empty() {
+            None
+        } else {
+            Some(self.query.clone())
+        };
+        self.open_page(path);
+    }
+
     fn display_page(&mut self, path: String) {
         self.page = path;
-        self.source = self.snapshot.pages.get(&self.page)
-            .map(|s| prepare(&self.page, s, &self.image_uris))
-            .unwrap_or_else(|| {
-                if self.page.is_empty() { "No readable Markdown pages in this directory.".into() }
-                else { format!("**Page unavailable:** {}\n\nThe page was removed, renamed or could not be read. Choose another page.",
-                    literal(&self.page)) }
-            });
+        self.target = None;
+        self.reveal = false;
+        self.passage_notice.clear();
+        if let Some(source) = self.snapshot.pages.get(&self.page) {
+            if let Some(query) = &self.selected_query {
+                self.target = search::target(source, query);
+                self.passage_notice = match &self.target {
+                    Some(t) if t.block.is_none() => "Source match only: no bounded rendered passage. The highlighted source excerpt below locates the match.".into(),
+                    Some(t) if !t.visible => "The match includes Markdown syntax or text not displayed as written. The corresponding block is marked; use the highlighted source excerpt below.".into(),
+                    Some(_) => "Matching passage marked below; the source excerpt highlights the first match.".into(),
+                    None if self.page.to_lowercase().contains(&query.to_lowercase()) => "Path-only match; no matching body passage.".into(),
+                    None => "The selected search text is no longer present on this page. Its previous passage target has been discarded.".into(),
+                };
+            }
+            self.source = self.target.as_ref().map_or_else(
+                || prepare(&self.page, source, &self.image_uris),
+                |target| search::prepared(&self.page, source, &self.image_uris, target),
+            );
+            self.reveal = self.target.as_ref().is_some_and(|t| t.block.is_some());
+        } else {
+            self.source = if self.page.is_empty() {
+                "No readable Markdown pages in this directory.".into()
+            } else {
+                format!(
+                    "**Page unavailable:** {}\n\nThe page was removed, renamed or could not be read. Choose another page.",
+                    literal(&self.page)
+                )
+            };
+        }
     }
 
     fn record_failure(&mut self, error: &str) {
@@ -385,6 +451,7 @@ impl Pagefold {
     fn navigate(&mut self, link: &str) {
         match resolve(&self.page, link) {
             Ok(path) if self.snapshot.pages.contains_key(&path) => {
+                self.selected_query = None;
                 self.open_page(path);
                 self.status = if link.contains('#') {
                     "Page opened. Heading fragments are not supported; scroll to the heading."
@@ -399,6 +466,9 @@ impl Pagefold {
                     |message| format!("{path}: {message}"),
                 );
                 if let Some(uri) = self.image_uris.get(&path) {
+                    self.target = None;
+                    self.passage_notice.clear();
+                    self.reveal = false;
                     self.source = format!("![Local image]({uri})");
                 }
             }
@@ -530,49 +600,47 @@ impl eframe::App for Pagefold {
                         .desired_width(f32::INFINITY),
                 );
                 observe(&mut nodes, "search", "Search page text", &response);
-                let query = self.query.to_lowercase();
-                let matches: Vec<String> = self
-                    .snapshot
-                    .index
-                    .iter()
-                    .filter(|(p, text)| {
-                        query.is_empty()
-                            || text.contains(&query)
-                            || p.to_lowercase().contains(&query)
-                    })
-                    .map(|(p, _)| p.clone())
-                    .collect();
-                ui.label(format!("{} matching pages", matches.len()));
+                if self.cached_query != self.query {
+                    self.update_results();
+                }
+                ui.label(format!("{} matching pages", self.results.len()));
+                let row_height = if self.query.is_empty() { 26.0 } else { 74.0 };
                 egui::ScrollArea::vertical()
                     .id_salt("browse")
-                    .max_height(120.0)
-                    .show_rows(
-                        ui,
-                        ui.spacing().interact_size.y,
-                        matches.len(),
-                        |ui, range| {
-                            for path in &matches[range] {
-                                ui.push_id(path, |ui| {
-                                    let response = ui
-                                        .add_sized(
-                                            [ui.available_width(), ui.spacing().interact_size.y],
-                                            egui::Button::new(path)
-                                                .selected(self.page == *path)
-                                                .truncate(),
-                                        )
-                                        .on_hover_text(path);
-                                    design::record_native_text_control(
-                                        &response,
-                                        design::NativeTextControlKind::Selectable,
-                                    );
-                                    observe(&mut nodes, &format!("page:{path}"), path, &response);
-                                    if response.clicked() {
-                                        self.open_page(path.clone());
+                    .max_height(150.0)
+                    .show_rows(ui, row_height, self.results.len(), |ui, range| {
+                        for index in range {
+                            let (path, excerpt) = self.results[index].clone();
+                            ui.push_id(&path, |ui| {
+                                let response = ui
+                                    .add_sized(
+                                        [ui.available_width(), 24.0],
+                                        egui::Button::new(&path)
+                                            .selected(self.page == path)
+                                            .truncate(),
+                                    )
+                                    .on_hover_text(&path);
+                                design::record_native_text_control(
+                                    &response,
+                                    design::NativeTextControlKind::Selectable,
+                                );
+                                observe(&mut nodes, &format!("page:{path}"), &path, &response);
+                                if response.clicked() {
+                                    self.select_result(path.clone());
+                                }
+                                if !self.query.is_empty() {
+                                    if let Some(excerpt) = excerpt {
+                                        let mut job = search::job(&excerpt, ui);
+                                        job.wrap.max_rows = 2;
+                                        job.wrap.break_anywhere = true;
+                                        ui.add(egui::Label::new(job).wrap());
+                                    } else {
+                                        ui.label("Path-only match · no body passage");
                                     }
-                                });
-                            }
-                        },
-                    );
+                                }
+                            });
+                        }
+                    });
                 if !self.snapshot.warnings.is_empty() {
                     egui::CollapsingHeader::new("Directory warnings").show(ui, |ui| {
                         egui::ScrollArea::vertical()
@@ -585,18 +653,48 @@ impl eframe::App for Pagefold {
                     });
                 }
             });
+        let marker_rect = std::rc::Rc::new(std::cell::RefCell::new(None));
+        let callback_rect = marker_rect.clone();
+        let reveal = self.reveal;
+        let visible = self.target.as_ref().is_some_and(|t| t.visible);
+        let callback = move |ui: &mut egui::Ui, html: &str| {
+            if html.trim() == search::MARKER {
+                let response = ui.label(
+                    egui::RichText::new(if visible {
+                        "Matching passage below"
+                    } else {
+                        "Corresponding source block below"
+                    })
+                    .strong()
+                    .background_color(egui::Color32::from_rgb(100, 70, 0))
+                    .color(egui::Color32::WHITE),
+                );
+                *callback_rect.borrow_mut() = Some(response.rect);
+                if reveal {
+                    response.scroll_to_me(Some(egui::Align::TOP));
+                }
+            } else {
+                ui.label(html);
+            }
+        };
         egui::CentralPanel::default().show(root, |ui| {
+            if !self.passage_notice.is_empty() { ui.label(&self.passage_notice); }
+            if let Some(t) = &self.target {
+                let excerpt = search::excerpt(&self.snapshot.pages[&self.page], t.matched.clone());
+                ui.add(egui::Label::new(search::job(&excerpt, ui)).wrap());
+            }
             ui.style_mut().interaction.selectable_labels = true;
             let result = egui::ScrollArea::vertical().id_salt((&self.page, "reader")).show(ui, |ui| {
                 ui.set_max_width(860.0_f32.min(ui.available_width()));
                 ui.label(&self.page);
-                CommonMarkViewer::new().explicit_image_uri_scheme(true)
+                CommonMarkViewer::new().explicit_image_uri_scheme(true).render_html_fn(Some(&callback))
                     .max_image_width(Some(ui.available_width().max(1.0) as usize))
                     .show(ui, &mut self.cache, &self.source);
             });
             nodes.push(serde_json::json!({"id":"reader", "rect":[result.inner_rect.min.x,result.inner_rect.min.y,
                 result.inner_rect.width(),result.inner_rect.height()], "scroll_y":result.state.offset.y}));
         });
+        self.reveal = false;
         let links = ctx.output_mut(|out| {
             let mut links = Vec::new();
             out.commands.retain(|command| {
@@ -618,6 +716,9 @@ impl eframe::App for Pagefold {
             "page":self.page, "root":self.snapshot.root, "generation":self.snapshot.generation,
             "status":self.visible_status(), "snapshot_stale":self.snapshot_stale,
             "query":self.query, "pending":self.pending.is_some(),
+            "result_count":self.results.len(), "results":self.results.iter().take(32).collect::<Vec<_>>(), "target":self.target, "passage_notice":self.passage_notice,
+            "history":self.history, "history_cursor":self.history_cursor,
+            "marker_rect":marker_rect.borrow().map(|r| [r.min.x,r.min.y,r.width(),r.height()]),
             "can_back":self.can_back(), "can_forward":self.can_forward(),
             "nodes":nodes, "text_coverage":coverage, "text_layouts":text_layouts,
             "limitations":["Reader and native label layout are unmeasured", "Text inputs have no framework coverage category", "Browser AccessKit adapter unavailable"],
@@ -662,6 +763,12 @@ mod tests {
             history: Vec::new(),
             history_cursor: 0,
             query: String::new(),
+            cached_query: String::new(),
+            results: Vec::new(),
+            selected_query: None,
+            target: None,
+            reveal: false,
+            passage_notice: String::new(),
             status: String::new(),
             snapshot_stale: false,
             source: String::new(),
@@ -686,6 +793,48 @@ mod tests {
             pages,
             ..Snapshot::default()
         }
+    }
+
+    #[test]
+    fn search_reselection_refresh_and_history_use_current_sources() {
+        let mut app = fixture_app();
+        let ctx = egui::Context::default();
+        let mut snapshot = fixture_snapshot("/synthetic");
+        app.accept(snapshot.clone(), &ctx);
+        app.query = "body".into();
+        app.update_results();
+        app.select_result("B.md".into());
+        app.select_result("B.md".into());
+        assert_eq!(app.history, ["A.md", "B.md"]);
+        app.traverse(false);
+        app.traverse(true);
+        assert_eq!(app.query, "body");
+        assert!(app.target.is_some());
+        snapshot
+            .pages
+            .insert("B.md".into(), "# B\n\nNew prefix body".into());
+        snapshot
+            .index
+            .insert("B.md".into(), snapshot.pages["B.md"].to_lowercase());
+        app.accept(snapshot.clone(), &ctx);
+        assert_eq!(app.target.as_ref().unwrap().matched.start, 16);
+        assert!(
+            app.results
+                .iter()
+                .find(|r| r.0 == "B.md")
+                .unwrap()
+                .1
+                .as_ref()
+                .unwrap()
+                .before
+                .contains("New prefix")
+        );
+        snapshot.pages.insert("B.md".into(), "Removed".into());
+        snapshot.index.insert("B.md".into(), "removed".into());
+        app.accept(snapshot, &ctx);
+        assert!(app.target.is_none());
+        assert!(!app.source.contains(search::MARKER));
+        assert!(app.passage_notice.contains("no longer present"));
     }
 
     #[test]
@@ -811,6 +960,12 @@ mod tests {
             history: Vec::new(),
             history_cursor: 0,
             query: String::new(),
+            cached_query: String::new(),
+            results: Vec::new(),
+            selected_query: None,
+            target: None,
+            reveal: false,
+            passage_notice: String::new(),
             status: String::new(),
             snapshot_stale: false,
             source: String::new(),

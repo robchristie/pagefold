@@ -47,7 +47,10 @@ Open **http://127.0.0.1:3817/**. Enter an absolute knowledge-directory path and
 choose **Open directory**. For the bundled synthetic example, enter the absolute path to
 `tests/fixtures/knowledge` in your checkout.
 Choose a page from the list, or type in **Search page text** to filter results.
-Click a result to read it. **Back** and **Forward** revisit pages opened through
+Results show a bounded, highlighted excerpt of the first Markdown source match.
+Path-only matches are labelled separately. Click a result to read it and reveal
+the corresponding passage; selecting the same result reveals it again.
+**Back** and **Forward** revisit pages opened through
 the list, search or internal links. Opening a different page after Back replaces
 the forward branch. Reopening the current page adds no duplicate. History stays
 in memory for the selected directory and resets when a different directory opens;
@@ -82,6 +85,8 @@ Search is literal, case-insensitive substring matching of page text or paths;
 Markdown syntax is included. The client searches the same index returned by the
 service. The index is recreated on every open/refresh, including after deletion
 or corruption; no irreplaceable derived state is required.
+Search text persists through Back and Forward. Refresh recomputes excerpts and
+passage targets; a removed match is explained and its old target discarded.
 Selection, search and scroll state remain in memory. State locations within,
 equal to, or containing the selected directory are rejected before writes.
 State directories and their ancestors must not be symlinks.
