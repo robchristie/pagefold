@@ -34,6 +34,17 @@ let serial = 0;
 let waiting = false;
 let last = null;
 const session = crypto.randomUUID();
+let timeline = history.state?.pagefold === 1 ? history.state.timeline : crypto.randomUUID();
+let position = history.state?.pagefold === 1 ? history.state.position : 0;
+let mappedRoot = '';
+let entries = [];
+function entryState(o) { return {pagefold:1, timeline, position, session, cursor:o.history_cursor}; }
+function remember(o) {
+    if (mappedRoot !== o.root) entries = [];
+    mappedRoot = o.root;
+    entries = o.history.map((page,i) => entries[i]?.page === page ? entries[i] : {page});
+    entries[o.history_cursor] = {page:o.page, position};
+}
 const copyButton = document.getElementById('copy-page-link');
 const copyStatus = document.getElementById('copy-status');
 const manualLink = document.getElementById('manual-link');
@@ -63,6 +74,15 @@ function loadAddress() {
     try {
         const target = parseAddress(location.hash);
         const state = history.state;
+        if (state?.pagefold === 1 && state.timeline === timeline) {
+            position = state.position;
+        } else {
+            // An untagged browser entry has no known offset. Start a new mapping;
+            // application history remains useful, but must not guess a traversal.
+            timeline = crypto.randomUUID();
+            position = 0;
+            entries = [];
+        }
         address(target.workspace, target.page, state?.session === session ? state.cursor : undefined, serial, '');
     } catch (error) {
         address('', '', undefined, serial, `Invalid page link: ${error.message}. Choose a directory to continue.`);
@@ -87,18 +107,23 @@ function sync() {
         if (waiting) {
             waiting = false;
             last = o;
-            if (o.root && o.page) history.replaceState({session, cursor:o.history_cursor}, '', fragment(o.root, o.page));
+            if (o.root && o.page) {
+                history.replaceState(entryState(o), '', fragment(o.root, o.page));
+                remember(o);
+            }
         } else if (o.root && o.page && (o.root !== last?.root || o.page !== last?.page)) {
-            const state = history.state;
+            const destination = entries[o.history_cursor]?.position;
             if (o.root === last?.root && o.history.length === last?.history.length &&
-                o.history.every((p,i) => p === last.history[i]) && state?.session === session) {
+                o.history.every((p,i) => p === last.history[i]) && destination !== undefined && destination !== position) {
                 waiting = true;
                 // Wait for popstate to deliver a new acknowledged request. The
                 // old frame must not replace the URL while traversal is queued.
                 serial++;
-                history.go(o.history_cursor - last.history_cursor);
+                history.go(destination - position);
             } else {
-                history.pushState({session, cursor:o.history_cursor}, '', fragment(o.root, o.page));
+                position++;
+                history.pushState(entryState(o), '', fragment(o.root, o.page));
+                remember(o);
             }
             last = o;
         } else last = o;

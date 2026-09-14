@@ -33,6 +33,7 @@ function lantern(command,args,name) {
 try {
     await mkdir(root+'/nested',{recursive:true});await mkdir(other,{recursive:true});await mkdir(scratch+'/state',{recursive:true});
     await writeFile(root+'/A.md','# Alpha\n\n[Special](nested/space%20日本%20%25%3F%23.md)\n\nneedle alpha\n');
+    await writeFile(root+'/C.md','# Third page\n');
     await writeFile(root+'/'+special,'# Special page\n\nneedle special\n\n[Alpha](../A.md)\n');
     await writeFile(other+'/B.md','# Other workspace\n');
     await symlink(other+'/B.md',root+'/escape.md');
@@ -77,6 +78,14 @@ try {
     await p.goForward();await wait('A.md');await click('pagefold.back');await wait(special);assert.equal(p.url(),url(root,special));
     await click('pagefold.forward');await wait('A.md');o=await state('app Forward retains query');assert.equal(o.query,'needle');assert.equal(o.length,length);
     assert.deepEqual(await inventory(root),original);assert.deepEqual(await inventory(other),otherOriginal);await state('source inventories unchanged by copy and navigation');
+    await p.goto(url(root,'A.md'));await p.reload();await wait('A.md');
+    await click('page:'+special);await wait(special);await click('page:C.md');await wait('C.md');
+    await click('directory');await p.keyboard.press('Control+A');await p.keyboard.insertText(other);await click('pagefold.open');await wait('B.md',other);
+    await p.goBack();await wait('C.md');await p.goBack();await wait(special);
+    await click('pagefold.back');await wait('C.md');assert.equal(p.url(),url(root,'C.md'));
+    await click('pagefold.forward');await wait(special);assert.equal(p.url(),url(root,special));await state('mixed app and browser traversal across workspace reset');
+    await p.reload();await wait(special);await p.goBack();await wait('A.md');
+    await click('pagefold.back');await wait(special);assert.equal(p.url(),url(root,special));await state('app traversal into browser entries predating reload');
     await p.goto(url(root,special));await wait(special);
     const generation=await p.evaluate(()=>pagefoldObservation().generation);
     await writeFile(root+'/'+special,'# Fresh external edit\n\nneedle changed body\n');
